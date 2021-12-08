@@ -10,6 +10,9 @@
                 <xpath expr="//field[@name='ref']" position="after">
                     <field name="period_of_supply"/>
                 </xpath>
+                <field name="invoice_user_id" position="before">
+                    <field name="internal_ref"/>
+                </field>
             </field>
         </record>
 
