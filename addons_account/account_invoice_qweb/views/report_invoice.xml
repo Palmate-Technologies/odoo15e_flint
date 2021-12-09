@@ -38,24 +38,10 @@
                             <span style="font-family:DroidKufiRegular"><strong>تاريخ الفاتورة</strong></span>
                         </td>
                     </tr>
+
                     <tr>
                         <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <strong>Invoice No</strong>&#160;
-                        </td>
-                        <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <p class="m-0" t-field="o.name"/>
-                        </td>
-                        <td style="background:none;    text-align:center; padding:4px">  </td>
-                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
-                            <p class="m-0" t-field="o.name"/>
-                        </td>
-                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
-                            <span style="font-family:DroidKufiRegular"><strong>رقم الفاتورة</strong></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <strong>Internal Reference</strong>
+                            <strong>Flint Inv.</strong>
                         </td>
                         <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
                             <p class="m-0" t-field="o.internal_ref"/>
@@ -66,6 +52,21 @@
                         </td>
                         <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
                             <span style="font-family:DroidKufiRegular"><strong>المرجع الداخلي</strong></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
+                            <strong>System Invoice No</strong>&#160;
+                        </td>
+                        <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
+                            <p class="m-0" t-field="o.name"/>
+                        </td>
+                        <td style="background:none;    text-align:center; padding:4px">  </td>
+                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
+                            <p class="m-0" t-field="o.name"/>
+                        </td>
+                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
+                            <span style="font-family:DroidKufiRegular"><strong>رقم الفاتورة</strong></span>
                         </td>
                     </tr>
 
@@ -118,44 +119,44 @@
                 <br/>
                 <table style="width:100%; font-size:12px;">
                     <tr>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:40%;" class="table-border-bottom-left-right-top">
                             <strong>Supplier Information -</strong>
                             <span style="font-family:DroidKufiRegular"><strong> بيانات المورد</strong></span>
                         </td>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4pxwidth:20%" class="table-border-bottom-left-right-top">
                             <strong>Item- </strong>
                             <span style="font-family:DroidKufiRegular"><strong> العنصر</strong></span>
                         </td>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:40%" class="table-border-bottom-left-right-top">
                             <strong>Client Information -</strong>
                             <span style="font-family:DroidKufiRegular"><strong> بيانات العميل</strong></span>
                         </td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:40%" class="table-border-bottom-left-right-top">
                             <span t-field="o.company_id.name"/>
                         </td>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:20%" class="table-border-bottom-left-right-top">
                             <strong>Name -</strong>
                             <span style="font-family:DroidKufiRegular"><strong> الاسم</strong></span>
                         </td>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:40%" class="table-border-bottom-left-right-top">
                             <span t-field="o.partner_id.name"/>
                         </td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:40%" class="table-border-bottom-left-right-top">
                             <span t-field="o.company_id.street"/><br/>
                             <span t-field="o.company_id.city"/><t t-if="o.partner_id.city">-</t>
                             <span t-field="o.company_id.state_id"/> <t t-if="o.company_id.state_id">-</t>
                             <span t-field="o.company_id.zip"/><t t-if="o.company_id.zip">-</t>
                             <span t-field="o.company_id.country_id"/>
                         </td>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:20%" class="table-border-bottom-left-right-top">
                             <strong>Address - </strong>
                             <span style="font-family:DroidKufiRegular"><strong> العنوان</strong></span>
                         </td>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:40%" class="table-border-bottom-left-right-top">
                             <span t-field="o.partner_id.street"/><br/>
                             <span t-field="o.partner_id.city"/><t t-if="o.partner_id.city">-</t>
                             <span t-field="o.partner_id.state_id"/><t t-if="o.partner_id.state_id">-</t>
@@ -164,14 +165,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:40%" class="table-border-bottom-left-right-top">
                             <span t-field="o.company_id.vat"/>
                         </td>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:20%" class="table-border-bottom-left-right-top">
                             <strong>VAT NO -</strong>
                             <span style="font-family:DroidKufiRegular"><strong> الرقم الضريبي</strong></span>
                         </td>
-                        <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
+                        <td style="border: 1px solid black; text-align:center;   padding:4px;width:40%" class="table-border-bottom-left-right-top">
                             <span t-field="o.partner_id.vat"/>
                         </td>
                     </tr>
@@ -179,26 +180,26 @@
                 <br/>
                 <table style="width:100%; font-size:12px;">
                     <tr>
-                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid; vertical-align: middle">
+                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid; vertical-align: middle;width:5%">
                             <strong>SL#<br/>
                             <span style="font-family:DroidKufiRegular">الرقم</span></strong>
                         </td>
-                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;">
+                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;width:40%">
                             <strong>DESCRIPTION<br/>
                             <span style="font-family:DroidKufiRegular">الوصف</span></strong>
                         </td>
-                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;">
+                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;width:10%">
                             <strong>QTY.<br/>
                             <span style="font-family:DroidKufiRegular">الكمية</span></strong>
                         </td>
-                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;">
+                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;width:15%">
                             <strong>Invoice Amount.<br/>
                             <span style="font-family:DroidKufiRegular">مبلغ الفاتورة</span></strong>
                         </td>
-                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;">
+                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;width:15%">
                             <strong>Amount in USD</strong>
                         </td>
-                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;">
+                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;width:15%">
                             <strong>Amount in SAR.<br/>
                             <span>(Rate:)</span></strong>
                         </td>
@@ -233,11 +234,11 @@
                 </table>
                     <table style="width:100%; font-size:12px;">
                     <tr>
-                        <td class="text-left" style="border: 1px solid black; padding: 2px;" width="58%">
+                        <td class="text-left" style="border: 1px solid black; padding: 2px;" width="65%">
                             <strong>Invoice Amount(Exl. Tax)- </strong>
-                            <span style="font-family:DroidKufiRegular"><strong>Invoice Amount(Exl. Tax) إجمالي الفاتورة غير شامل ضريبة القيمة المضافة</strong></span>
+                            <span style="font-family:DroidKufiRegular"><strong> إجمالي الفاتورة غير شامل ضريبة القيمة المضافة</strong></span>
                         </td>
-                        <td class="text-right" style="border: 1px solid black; padding: 2px;" width="20%">
+                        <td class="text-right" style="border: 1px solid black; padding: 2px;" width="10%">
                             <span t-esc="round(o.amount_untaxed/3.75,2)"/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="20%">
