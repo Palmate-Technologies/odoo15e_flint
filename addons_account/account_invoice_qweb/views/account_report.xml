@@ -33,6 +33,20 @@
             <field name="paperformat_id" ref="account_invoice_qweb.paperformat_tax_invoice_custom"/>
         </record>
 
+        <!-- QWeb Reports -->
+        <record id="account_invoices_stc" model="ir.actions.report">
+            <field name="name">Invoices STC</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">account_invoice_qweb.report_invoice_stc_custom</field>
+            <field name="report_file">account_invoice_qweb.report_invoice_stc_custom</field>
+            <field name="report_name">account_invoice_qweb.report_invoice_stc_custom</field>
+            <field name="attachment">(object.state == 'posted') and ((object.name or 'INV').replace('/','_')+'.pdf')</field>
+            <field name="binding_model_id" ref="account.model_account_move"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="account_invoice_qweb.paperformat_tax_invoice_custom"/>
+        </record>
+
     <template id="web.external_layout_standard">
         <div t-attf-class="header o_company_#{company.id}_layout" t-att-style="report_header_style">
             <div class="row">
