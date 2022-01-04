@@ -16,7 +16,7 @@
 
 			<xpath expr="//field[@name='note']" position="after" >
 			<group>
-				<group>
+				<group class="oe_subtotal_footer oe_left">
 					<field name="currency_id" invisible="1"/>
 					<field name="amount_untaxed" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="True" string="Project Sale Order Value"/>
 					<field name="invoiced_amount" widget='monetary' options="{'currency_field': 'currency_id'}" readonly="True"/>

@@ -2,9 +2,8 @@
 
 {
 	'name'			: 'Sales Invoice Summary',
-	'version'		: '15.0.0.0',
+	'version'		: '15.0.0.1',
 	'category'		: 'Sales',
-	'license'		: 'OPL-1',
 	'summary'		: 'You can see Invoiced Amount, Invoice Amount Due, Invoice Paid Amount in sale order',
 	'description'	: """You can see Invoiced Amount, Invoice Amount Due, Invoice Paid Amount in sale order. 
 	Invoiced Amount Details For Sale Order
