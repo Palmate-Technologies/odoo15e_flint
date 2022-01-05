@@ -103,6 +103,36 @@
                     </tr>
                     <tr>
                         <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
+                            <strong>Contract No</strong>&#160;
+                        </td>
+                        <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
+                            <p class="m-0" t-field="o.contract_no"/>
+                        </td>
+                        <td style="background:none;    text-align:center; padding:4px">  </td>
+                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
+                            <p class="m-0" t-field="o.contract_no"/>
+                        </td>
+                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
+                            <span style="font-family:DroidKufiRegular"><strong>رقم التعاقد</strong></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
+                            <strong>Project Name</strong>&#160;
+                        </td>
+                        <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
+                            <p class="m-0" t-field="o.analytic_account_id"/>
+                        </td>
+                        <td style="background:none;    text-align:center; padding:4px">  </td>
+                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
+                            <p class="m-0" t-field="o.analytic_account_id"/>
+                        </td>
+                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
+                            <span style="font-family:DroidKufiRegular"><strong>اسم المشروع</strong></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
                             <strong>Period of Supply</strong>
                         </td>
                         <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">

@@ -22,7 +22,7 @@
     # any module necessary for this one to work correctly
     'depends': ['base','account',
                 'l10n_sa_invoice',
-                'web',
+                'web','invoice_analytic_account'
                 ],
 
     # always loaded
