@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_move_form_analytic_invoice" model="ir.ui.view">
+            <field name="name">view.move.form.analytic.invoice</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <div name="journal_div" position="after">
+                    <field name="analytic_account_id" options="{'no_create': True}"/>
+                </div>
+                <xpath expr="//field[@name='invoice_line_ids']" position="attributes">
+                    <attribute name="context">{'default_move_type': context.get('default_move_type'), 'journal_id': journal_id, 'default_partner_id': commercial_partner_id, 'default_currency_id': currency_id or company_currency_id, 'default_analytic_account_id':analytic_account_id}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
