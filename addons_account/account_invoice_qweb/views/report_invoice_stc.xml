@@ -303,9 +303,9 @@
                     </table>
                     <br/>
 
-                    <div class="row">
+                    <div class="row" style="page-break-inside: avoid;">
                         <div class="col-8">
-                    <table style="width:100%; font-size:12px;">
+                    <table style="width:100%; font-size:12px;page-break-inside: avoid;">
                     <tr>
                         <td style="border: 1px solid black; text-align:center;   padding:4px" class="table-border-bottom-left-right-top">
                             <strong>Bank Details </strong>
