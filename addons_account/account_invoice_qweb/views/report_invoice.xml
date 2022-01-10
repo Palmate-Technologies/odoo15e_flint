@@ -41,7 +41,7 @@
 
                     <tr>
                         <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <strong>Invoice No</strong>
+                            <strong>Flint Inv.</strong>
                         </td>
                         <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
                             <p class="m-0" t-field="o.internal_ref"/>
