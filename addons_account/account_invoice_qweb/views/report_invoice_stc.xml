@@ -266,7 +266,8 @@
                             <span t-esc="line_tax_amount"/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
-                            <span t-esc="line.price_subtotal + line_tax_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+<!--                            <span t-esc="line.price_subtotal + line_tax_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
+                            <span t-esc="line.price_subtotal + line_tax_amount"/>&#160;<span t-field="o.currency_id.name"/>
                         </td>
                     </tr>
 
@@ -279,7 +280,8 @@
                         </td>
 
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="15%">
-                            <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+<!--                            <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
+                            <span t-esc="o.amount_untaxed"/>&#160;<span t-field="o.currency_id.name"/>
                         </td>
                     </tr>
                     <tr>
@@ -288,7 +290,8 @@
                             <span style="font-family:DroidKufiRegular"><strong> 15% ضريبة القيمة المضافة</strong></span>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="15%">
-                            <span t-esc="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+<!--                            <span t-esc="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
+                            <span t-esc="o.amount_tax"/>&#160;<span t-field="o.currency_id.name"/>
                         </td>
                     </tr>
                     <tr>
@@ -297,7 +300,8 @@
                             <span style="font-family:DroidKufiRegular"><strong> إجمالي الفاتورة شاملا ضريبة القيمة المضافة</strong></span>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="15%">
-                            <span t-esc="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+<!--                            <span t-esc="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
+                            <span t-esc="o.amount_total"/>&#160;<span t-field="o.currency_id.name"/>
                         </td>
                     </tr>
                     </table>
