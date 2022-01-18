@@ -17,7 +17,7 @@
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
     'category': 'Accounting',
-    'version': '1.0',
+    'version': '1.0.1',
 
     # any module necessary for this one to work correctly
     'depends': ['base','account',
@@ -32,6 +32,7 @@
         'views/report_invoice_stc.xml',
         'views/account_report.xml',
         'views/account_move_view.xml',
+        'views/report_journal.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
