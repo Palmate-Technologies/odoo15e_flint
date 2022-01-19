@@ -101,36 +101,40 @@
                             <span style="font-family:DroidKufiRegular"><strong>امر الشراء</strong></span>
                         </td>
                     </tr>
-                    <tr>
-                        <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <strong>Contract No</strong>&#160;
-                        </td>
-                        <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <p class="m-0" t-field="o.contract_no"/>
-                        </td>
-                        <td style="background:none;    text-align:center; padding:4px">  </td>
-                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
-                            <p class="m-0" t-field="o.contract_no"/>
-                        </td>
-                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
-                            <span style="font-family:DroidKufiRegular"><strong>رقم التعاقد</strong></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <strong>Project Name</strong>&#160;
-                        </td>
-                        <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <p class="m-0" t-field="o.analytic_account_id"/>
-                        </td>
-                        <td style="background:none;    text-align:center; padding:4px">  </td>
-                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
-                            <p class="m-0" t-field="o.analytic_account_id"/>
-                        </td>
-                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
-                            <span style="font-family:DroidKufiRegular"><strong>اسم المشروع</strong></span>
-                        </td>
-                    </tr>
+                    <t t-if="o.contract_no">
+                        <tr>
+                            <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
+                                <strong>Contract No</strong>&#160;
+                            </td>
+                            <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
+                                <p class="m-0" t-field="o.contract_no"/>
+                            </td>
+                            <td style="background:none;    text-align:center; padding:4px">  </td>
+                            <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
+                                <p class="m-0" t-field="o.contract_no"/>
+                            </td>
+                            <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
+                                <span style="font-family:DroidKufiRegular"><strong>رقم التعاقد</strong></span>
+                            </td>
+                        </tr>
+                    </t>
+                    <t t-if="o.analytic_account_id">
+                        <tr>
+                            <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
+                                <strong>Project Name</strong>&#160;
+                            </td>
+                            <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
+                                <p class="m-0" t-field="o.analytic_account_id"/>
+                            </td>
+                            <td style="background:none;    text-align:center; padding:4px">  </td>
+                            <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
+                                <p class="m-0" t-field="o.analytic_account_id"/>
+                            </td>
+                            <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
+                                <span style="font-family:DroidKufiRegular"><strong>اسم المشروع</strong></span>
+                            </td>
+                        </tr>
+                    </t>
                     <tr>
                         <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
                             <strong>Period of Supply</strong>
@@ -220,12 +224,12 @@
                             <span style="font-family:DroidKufiRegular">الوصف</span></strong>
                         </td>
                         <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;width:10%">
-                            <strong>Unit Price.<br/>
-                            <span style="font-family:DroidKufiRegular">سعر الوحدة</span></strong>
-                        </td>
-                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;width:10%">
                             <strong>QTY.<br/>
                             <span style="font-family:DroidKufiRegular">الكمية</span></strong>
+                        </td>
+                        <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;width:10%">
+                            <strong>Unit Price.<br/>
+                            <span style="font-family:DroidKufiRegular">سعر الوحدة</span></strong>
                         </td>
                         <td style="padding:4px; background:#a2a2a2; text-align:center; border:1px solid;width:10%">
                             <strong>Invoice Amount.<br/>
@@ -251,12 +255,12 @@
                             <br/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
-                            <span t-field="line.price_unit"/>
-                        </td>
-                        <td class="text-right" style="border: 1px solid black; padding: 2px;">
                             <span t-field="line.quantity"/>
                             <span t-field="line.uom_id" groups="product.group_uom"/>
                             <br/>
+                        </td>
+                        <td class="text-right" style="border: 1px solid black; padding: 2px;">
+                            <span t-field="line.price_unit"/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
                             <span t-esc="round(line.price_unit * line.quantity,2)"/>
@@ -267,7 +271,7 @@
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
 <!--                            <span t-esc="line.price_subtotal + line_tax_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
-                            <span t-esc="line.price_subtotal + line_tax_amount"/>&#160;<span t-field="o.currency_id.name"/>
+                            <span t-esc="round(line.price_subtotal + line_tax_amount,2)"/>&#160;<span t-field="o.currency_id.name"/>
                         </td>
                     </tr>
 
