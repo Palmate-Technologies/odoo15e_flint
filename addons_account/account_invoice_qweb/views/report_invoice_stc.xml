@@ -262,17 +262,17 @@
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
                             <span t-field="line.price_unit"/>
                         </td>
+<!--                        <td style="width: 10%;" align="right">${format_amount(object.amount_untaxed, object.currency_id)}</td>-->
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
-<!--                            <span t-esc="round(line.price_unit * line.quantity,2)"/>-->
-                            <span t-esc="'{:,}'.format(round(line.price_unit * line.quantity,2))"/>
+                            <span t-esc="'{:,}'.format(round(line.price_unit * line.quantity, o.currency_id.decimal_places))"></span>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
-                            <t t-set="line_tax_amount" t-value="round(sum((tax.amount/100.0 * line.price_subtotal) for tax in line.tax_ids),2)"/>
-                            <span t-esc="'{:,}'.format(round(line_tax_amount,2))"/>
+                            <t t-set="line_tax_amount" t-value="round(sum((tax.amount/100.0 * line.price_subtotal) for tax in line.tax_ids),o.currency_id.decimal_places)"/>
+                            <span t-esc="'{:,}'.format(round(line_tax_amount, o.currency_id.decimal_places))"/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
 <!--                            <span t-esc="line.price_subtotal + line_tax_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
-                            <span t-esc="'{:,}'.format(round(line.price_subtotal + line_tax_amount,2))"/>&#160;<span t-field="o.currency_id.name"/>
+                            <span t-esc="'{:,}'.format(round(line.price_subtotal + line_tax_amount, o.currency_id.decimal_places))"/>&#160;<span t-field="o.currency_id.name"/>
                         </td>
                     </tr>
 
