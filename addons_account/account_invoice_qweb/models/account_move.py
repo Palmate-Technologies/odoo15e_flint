@@ -22,5 +22,6 @@ class AccountMove(models.Model):
         if sar_currency and (self.currency_id.id != sar_currency.id):
             if amount and sar_currency.rate:
                 amount = float(round(amount / self.currency_id.rate,2))
+        amount = '{:,.2f}'.format(amount)
         return str(amount)+' '+sar_currency.name
 

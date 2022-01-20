@@ -255,17 +255,14 @@
                             <br/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
-<!--                            <span t-esc="round(sum((tax.amount/100.0 * l.price_subtotal) for tax in l.tax_ids),2)"/>-->
-                            <span t-esc="line.price_subtotal"/>
+                            <span t-esc="'{:,}'.format(line.price_subtotal)"/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
 <!--                            usd-->
-<!--                            <span t-esc="round(line.price_subtotal / 3.75,2)"/>-->
-                            <span t-esc="o.get_usd_amount(line.price_subtotal)" />
+                            <span t-esc="'{:,}'.format(o.get_usd_amount(line.price_subtotal))"/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;">
-<!--                            <span t-esc="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
-                            <span t-esc="o.get_sar_amount(line.price_subtotal)" />
+                            <span t-esc="o.get_sar_amount(line.price_subtotal)"/>
                         </td>
                     </tr>
 
@@ -277,12 +274,10 @@
                             <span style="font-family:DroidKufiRegular"><strong> إجمالي الفاتورة غير شامل ضريبة القيمة المضافة</strong></span>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="10%">
-<!--                            <span t-esc="round(o.amount_untaxed/3.75,2)"/>-->
-                            <span t-esc="o.get_usd_amount(o.amount_untaxed)" />
+                            <span t-esc="'{:,}'.format(o.get_usd_amount(o.amount_untaxed))"/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="20%">
-<!--                            <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
-                            <span t-esc="o.get_sar_amount(o.amount_untaxed)" />
+                            <span t-esc="o.get_sar_amount(o.amount_untaxed)"/>
                         </td>
                     </tr>
                     <tr>
@@ -291,12 +286,10 @@
                             <span style="font-family:DroidKufiRegular"><strong> 15% ضريبة القيمة المضافة</strong></span>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="20%">
-<!--                            <span t-esc="round(o.amount_tax/3.75,2)"/>-->
-                            <span t-esc="o.get_usd_amount(o.amount_tax)" />
+                            <span t-esc="'{:,}'.format(o.get_usd_amount(o.amount_tax))"/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="20%">
-<!--                            <span t-esc="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
-                            <span t-esc="o.get_sar_amount(o.amount_tax)" />
+                            <span t-esc="o.get_sar_amount(o.amount_tax)"/>
                         </td>
                     </tr>
                     <tr>
@@ -305,13 +298,11 @@
                             <span style="font-family:DroidKufiRegular"><strong> إجمالي الفاتورة شاملا ضريبة القيمة المضافة</strong></span>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="20%">
-<!--                            <span t-esc="round(o.amount_total/3.75,2)"/>-->
-                            <span t-esc="o.get_usd_amount(o.amount_total)" />
+                            <span t-esc="'{:,}'.format(o.get_usd_amount(o.amount_total))"/>
 
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="20%">
-<!--                            <span t-esc="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
-                            <span t-esc="o.get_sar_amount(o.amount_total)" />
+                            <span t-esc="o.get_sar_amount(o.amount_total)"/>
                         </td>
                     </tr>
                     </table>
