@@ -32,13 +32,13 @@ class AccountMoveLine(models.Model):
 
     @api.model
     def create(self, vals):
-        vals['quantity_str'] = str(vals.get('quantity'))
+        vals['quantity_str'] = str(remove_decimal_zeros_from_number(vals.get('quantity')))
         res = super(AccountMoveLine, self).create(vals)
         return res
 
     def write(self, vals):
         if 'quantity' in vals:
-            vals['quantity_str'] = str(vals.get('quantity'))
+            vals['quantity_str'] = str(remove_decimal_zeros_from_number(vals.get('quantity')))
         res = super(AccountMoveLine, self).write(vals)
         return res
 
