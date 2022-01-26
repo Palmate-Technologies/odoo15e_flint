@@ -28,17 +28,9 @@ def remove_decimal_zeros_from_number(num):
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
 
-    quantity_str = fields.Char()
+    @api.depends('quantity')
+    def _compute_quantity_str(self):
+        for record in self:
+            record.quantity_str = str(remove_decimal_zeros_from_number(record.quantity))
 
-    @api.model
-    def create(self, vals):
-        vals['quantity_str'] = str(remove_decimal_zeros_from_number(vals.get('quantity')))
-        res = super(AccountMoveLine, self).create(vals)
-        return res
-
-    def write(self, vals):
-        if 'quantity' in vals:
-            vals['quantity_str'] = str(remove_decimal_zeros_from_number(vals.get('quantity')))
-        res = super(AccountMoveLine, self).write(vals)
-        return res
-
+    quantity_str = fields.Char(string='Quantity Str',compute="_compute_quantity_str")

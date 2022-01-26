@@ -23,7 +23,7 @@
 	""",
 	'author'		: 'Palmate',
 	'website'		: 'https://www.palmate.in',
-	'depends'		: ['base','sale','sale_management','stock'],
+	'depends'		: ['base','sale','sale_management'],
 	'data'			: [
 	                    'views/sales_invoice_views.xml'
 						],
