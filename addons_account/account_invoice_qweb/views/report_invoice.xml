@@ -11,8 +11,14 @@
                 </style>
                 <div class="text-center">
                     <h5>
-                        <span>Tax Invoice /</span>
-                        <span style="font-family:DroidKufiRegular">فاتورة ضريبة القيمة المضافة</span>
+                        <t t-if="o.move_type=='out_refund'">
+                            <span>Credit Memo /</span>
+                            <span style="font-family:DroidKufiRegular">ملاحظة ائتمانية</span>
+                        </t>
+                        <t t-else="">
+                            <span>TAX Invoice /</span>
+                            <span style="font-family:DroidKufiRegular">فاتورة ضريبة القيمة المضافة</span>
+                        </t>
                     </h5>
                 </div>
 <!--                <t t-set="address">-->
