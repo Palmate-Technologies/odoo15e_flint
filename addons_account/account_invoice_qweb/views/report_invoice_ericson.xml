@@ -45,32 +45,34 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <strong>Flint Inv.</strong>
-                        </td>
-                        <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <p class="m-0" t-field="o.internal_ref"/>
-                        </td>
-                        <td style="background:none;    text-align:center; padding:4px">  </td>
-                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
-                            <p class="m-0" t-field="o.internal_ref"/>
-                        </td>
-                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
-                            <span style="font-family:DroidKufiRegular"><strong>رقم الفاتورة</strong></span>
-                        </td>
-                    </tr>
+<!--                    <tr>-->
+<!--                        <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">-->
+<!--                            <strong>Flint Inv.</strong>-->
+<!--                        </td>-->
+<!--                        <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">-->
+<!--                            <p class="m-0" t-field="o.internal_ref"/>-->
+<!--                        </td>-->
+<!--                        <td style="background:none;    text-align:center; padding:4px">  </td>-->
+<!--                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">-->
+<!--                            <p class="m-0" t-field="o.internal_ref"/>-->
+<!--                        </td>-->
+<!--                        <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">-->
+<!--                            <span style="font-family:DroidKufiRegular"><strong>رقم الفاتورة</strong></span>-->
+<!--                        </td>-->
+<!--                    </tr>-->
 
                     <tr>
                         <td style="border: 1px solid black; text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <strong>System Invoice No</strong>&#160;
+                            <strong>System Invoice No</strong>
                         </td>
                         <td style="border: 1px solid black;text-align:left;   padding:4px" class="table-border-bottom-left-right-top">
-                            <p class="m-0" t-field="o.name"/>
+<!--                            <p class="m-0" t-field="o.name"/>-->
+                            <span t-esc="o.get_sequence()"/>
                         </td>
                         <td style="background:none;    text-align:center; padding:4px">  </td>
                         <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
-                            <p class="m-0" t-field="o.name"/>
+<!--                            <p class="m-0" t-field="o.name"/>-->
+                            <span t-esc="o.get_sequence()"/>
                         </td>
                         <td style="border: 1px solid black;text-align:right;   padding:4px" class="table-border-bottom-left-right-top">
                             <span style="font-family:DroidKufiRegular"><strong>رقم فاتورة النظام</strong></span>

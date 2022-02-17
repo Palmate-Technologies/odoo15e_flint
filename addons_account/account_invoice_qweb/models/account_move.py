@@ -25,3 +25,10 @@ class AccountMove(models.Model):
         amount = '{:,.2f}'.format(amount)
         return str(amount)+' '+sar_currency.name
 
+    def get_sequence(self):
+        seq = self.internal_ref or ''
+        if self.name and seq:
+            seq = str(seq) +"/"+ str(self.name.split("/")[2])
+        return seq
+
+
