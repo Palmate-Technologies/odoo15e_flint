@@ -23,7 +23,7 @@
     'depends': ['base','account',
                 'l10n_sa_invoice',
                 'web','invoice_analytic_account',
-                'invoice_line_quantity_str' # bcz of one field ie quantity_str
+                'invoice_line_quantity_str', # bcz of one field ie quantity_str
                 'product'# bcz of adjustment line
                 ],
 
