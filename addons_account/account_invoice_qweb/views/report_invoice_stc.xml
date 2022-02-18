@@ -254,7 +254,7 @@
 
                         </td>
                     </tr>
-                    <tr t-foreach="o.invoice_line_ids.filtered(lambda line: line.is_rounding_line!=True)"
+                    <tr t-foreach="o.invoice_line_ids.filtered(lambda line: line.is_rounding_line!=True and not line.product_id.adjustment_product)"
                         t-as="line">
                         <td style="padding:4px; text-align:center; border:1px solid;">
                             <span t-esc="line_index+1"/>
@@ -294,8 +294,8 @@
                         </td>
 
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="15%">
-<!--                            <span t-esc="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>-->
-                            <span t-esc="'{:,}'.format(o.amount_untaxed)"/>&#160;<span t-field="o.currency_id.name"/>
+<!--                            <span t-esc="'{:,}'.format(o.amount_untaxed)"/>&#160;<span t-field="o.currency_id.name"/>-->
+                            <span t-esc="'{:,}'.format(o.get_untaxed_amount_without_adjustment())"/>&#160;<span t-field="o.currency_id.name"/>
                         </td>
                     </tr>
                     <tr>
@@ -308,6 +308,18 @@
                             <span t-esc="'{:,}'.format(o.amount_tax)"/>&#160;<span t-field="o.currency_id.name"/>
                         </td>
                     </tr>
+                    <t t-set="adjustment_amount_calc" t-value="o.adjustment_amount_calc"/>
+                    <t t-if="adjustment_amount_calc!=0.0">
+                        <tr>
+                            <td class="text-left" style="border: 1px solid black; padding: 2px;" width="85%">
+                                <strong>Adjustment</strong>/
+                                <span style="font-family:DroidKufiRegular"><strong> تعديل</strong></span>
+                            </td>
+                            <td class="text-right" style="border: 1px solid black; padding: 2px;" width="15%">
+                                <span t-esc="'{:,}'.format(o.adjustment_amount_calc)"/>&#160;<span t-field="o.currency_id.name"/>
+                            </td>
+                        </tr>
+                    </t>
                     <tr>
                         <td class="text-left" style="border: 1px solid black; padding: 2px;" width="85%">
                             <strong>Total invoice including VAT </strong>

@@ -248,7 +248,7 @@
                             <span>(Rate:)</span></strong>
                         </td>
                     </tr>
-                    <tr t-foreach="o.invoice_line_ids.filtered(lambda line: line.is_rounding_line!=True)"
+                    <tr t-foreach="o.invoice_line_ids.filtered(lambda line: line.is_rounding_line!=True and not line.product_id.adjustment_product)"
                         t-as="line">
                         <td style="padding:4px; text-align:center; border:1px solid;">
                             <span t-esc="line_index+1"/>
@@ -281,11 +281,14 @@
                             <strong>Invoice Amount(Exl. Tax)- </strong>
                             <span style="font-family:DroidKufiRegular"><strong> إجمالي الفاتورة غير شامل ضريبة القيمة المضافة</strong></span>
                         </td>
+                        <t t-set="amount_untaxed_without_adjustment" t-value="o.get_untaxed_amount_without_adjustment()"/>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="10%">
-                            <span t-esc="'{:,}'.format(o.get_usd_amount(o.amount_untaxed))"/>
+<!--                            <span t-esc="'{:,}'.format(o.get_usd_amount(o.amount_untaxed))"/>-->
+                            <span t-esc="'{:,}'.format(o.get_usd_amount(amount_untaxed_without_adjustment))"/>
                         </td>
                         <td class="text-right" style="border: 1px solid black; padding: 2px;" width="20%">
-                            <span t-esc="o.get_sar_amount(o.amount_untaxed)"/>
+<!--                            <span t-esc="o.get_sar_amount(o.amount_untaxed)"/>-->
+                            <span t-esc="o.get_sar_amount(amount_untaxed_without_adjustment)"/>
                         </td>
                     </tr>
                     <tr>
@@ -300,6 +303,21 @@
                             <span t-esc="o.get_sar_amount(o.amount_tax)"/>
                         </td>
                     </tr>
+                    <t t-set="adjustment_amount_calc" t-value="o.adjustment_amount_calc"/>
+                    <t t-if="adjustment_amount_calc!=0.0">
+                        <tr>
+                            <td class="text-left" style="border: 1px solid black; padding: 2px;" width="58%">
+                                <strong>Adjustment</strong>/
+                                <span style="font-family:DroidKufiRegular"><strong> تعديل</strong></span>
+                            </td>
+                            <td class="text-right" style="border: 1px solid black; padding: 2px;" width="20%">
+<!--                                <span t-esc="'{:,}'.format(o.adjustment_amount_calc)"/>&#160;<span t-field="o.currency_id.name"/>-->
+                            </td>
+                            <td class="text-right" style="border: 1px solid black; padding: 2px;" width="20%">
+                                <span t-esc="'{:,}'.format(o.adjustment_amount_calc)"/>&#160;<span t-field="o.currency_id.name"/>
+                            </td>
+                        </tr>
+                    </t>
                     <tr>
                         <td class="text-left" style="border: 1px solid black; padding: 2px;" width="58%">
                             <strong>Total invoice including VAT </strong>

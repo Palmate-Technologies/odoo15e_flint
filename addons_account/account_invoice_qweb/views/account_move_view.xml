@@ -16,6 +16,10 @@
                 <div name="journal_div" position="after">
                     <field name="contract_no"/>
                 </div>
+
+                <xpath expr="//field[@name='tax_totals_json']" position="after">
+                    <field name="adjustment_amount_calc"/>
+                </xpath>
             </field>
         </record>
 

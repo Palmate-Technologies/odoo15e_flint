@@ -24,6 +24,7 @@
                 'l10n_sa_invoice',
                 'web','invoice_analytic_account',
                 'invoice_line_quantity_str' # bcz of one field ie quantity_str
+                'product'# bcz of adjustment line
                 ],
 
     # always loaded
@@ -35,6 +36,7 @@
         'views/account_report.xml',
         'views/account_move_view.xml',
         'views/report_journal.xml',
+        'views/product_views.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
