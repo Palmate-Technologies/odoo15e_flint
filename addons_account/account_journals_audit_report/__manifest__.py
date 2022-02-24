@@ -7,7 +7,7 @@
 """,
 
     'description': """
-        Print Account code-Account Name in Journals Audit report.
+        Print Account code-Account Name in Journals Audit report
     """,
 
     'author': "Palmate",
