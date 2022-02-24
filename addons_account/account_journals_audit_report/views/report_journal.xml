@@ -1,0 +1,11 @@
+<odoo>
+  <data>
+
+    <template id="report_journal_account_name" inherit_id="account.report_journal">
+        <xpath expr="//table[@class='table table-sm']//tbody//tr/td[3]" position="inside">
+            <span>-</span><span t-field="aml.account_id.name"/>
+        </xpath>
+    </template>
+
+  </data>
+</odoo>

@@ -1,0 +1,20 @@
+<odoo>
+  <data>
+
+        <record id="view_bank_statement_form_editable" model="ir.ui.view">
+            <field name="name">view.bank.statement.form.editable</field>
+            <field name="model">account.bank.statement</field>
+            <field name="inherit_id" ref="account.view_bank_statement_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', '=', 'confirm')]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='amount']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('parent.state', '=', 'confirm'),('is_reconciled', '=', True)]}</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+  </data>
+</odoo>
