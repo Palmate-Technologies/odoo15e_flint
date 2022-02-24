@@ -7,7 +7,7 @@
 """,
 
     'description': """
-        Allow to edit unreconciled bank statement line in Processing state.
+        Allow to edit unreconciled bank statement line in Processing state
     """,
 
     'author': "Palmate",
