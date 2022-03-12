@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Account Journals Audit Report",
+    'name': "Purchase Order Qweb",
 
     'summary': """
-    Print Account code-Account Name in Journals Audit report.
+    Purchase order qweb reports.
 """,
 
     'description': """
-        Print Account code-Account Name in Journals Audit report
+        Purchase order qweb reports.
     """,
 
     'author': "Palmate",
@@ -16,21 +16,21 @@
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/14.0/odoo/addons/base/data/ir_module_category_data.xml
     # for the full list
-    'category': 'Account',
+    'category': 'Purchase',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['account'],
+    'depends': ['purchase'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/report_journal.xml',
+        'report/report_purchase.xml',
+        'views/purchase_report_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
         'demo/demo.xml',
     ],
     'license': 'LGPL-3',
-
 }

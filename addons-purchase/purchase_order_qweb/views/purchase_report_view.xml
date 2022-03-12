@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+
+
+        <record id="purchase_order_report_custom" model="ir.actions.report">
+            <field name="name">Purchase</field>
+            <field name="model">purchase.order</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">purchase_order_qweb.report_purchase_order_custom</field>
+            <field name="report_file">purchase_order_qweb.report_purchase_order_custom</field>
+            <field name="print_report_name">'Purchase - %s' % (object.name)</field>
+            <field name="binding_model_id" ref="purchase.model_purchase_order"/>
+            <field name="binding_type">report</field>
+        </record>
+
+
+
+    </data>
+</odoo>

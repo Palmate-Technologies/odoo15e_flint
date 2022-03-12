@@ -30,4 +30,5 @@
 	'installable'	: True,
 	'auto_install'	: False,
 	# "images":[],
+	'license': 'LGPL-3',
 }
