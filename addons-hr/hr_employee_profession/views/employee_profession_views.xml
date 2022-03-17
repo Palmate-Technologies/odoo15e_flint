@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_employee_profession_form" model="ir.ui.view">
+             <field name="name">view.employee.profession.form</field>
+             <field name="model">employee.profession</field>
+             <field name="arch" type="xml">
+                 <form string="Employee Profession">
+                     <sheet>
+                         <group>
+                             <group>
+                                <field name="name"/>
+                             </group>
+                         </group>
+                     </sheet>
+                 </form>
+             </field>
+         </record>
+
+         <record id="view_employee_profession_tree" model="ir.ui.view">
+             <field name="name">view.employee.profession.tree</field>
+             <field name="model">employee.profession</field>
+             <field name="arch" type="xml">
+                 <tree string="Employees Profession">
+                     <field name="name"/>
+                 </tree>
+             </field>
+         </record>
+
+         <record id="action_employee_profession_views" model="ir.actions.act_window">
+             <field name="name">Employee Profession</field>
+             <field name="res_model">employee.profession</field>
+             <field name="view_mode">tree,form</field>
+         </record>
+
+        <menuitem
+            id="menu_view_employee_profession"
+            name="Employee Profession"
+            action="action_employee_profession_views"
+            parent="hr.menu_human_resources_configuration_employee"
+            sequence="5"/>
+
+     </data>
+ </odoo>
