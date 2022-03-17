@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="view_employee_form_blood_group" model="ir.ui.view">
+        <field name="name">hr.employee.form.blood.group</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='phone']" position="after">
+                <field name="blood_group"/>
+            </xpath>
+            <xpath expr="//field[@name='coach_id']" position="after">
+                <field name="iqama_occupation"/>
+                <field name="actual_work_trade"/>
+                <field name="actual_work_trade_arabic"/>
+            </xpath>
+            <xpath expr="//field[@name='work_email']" position="after">
+                <field name="personal_email"/>
+            </xpath>
+            <xpath expr="//field[@name='work_permit_expiration_date']" position="after">
+                <field name="work_permit_expiration_date_hijri"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- Form -->
+<!--    <record id="view_employee_form_inherited" model="ir.ui.view">-->
+<!--        <field name="name">hr.employee.form.hr.base</field>-->
+<!--        <field name="model">hr.employee</field>-->
+<!--        <field name="inherit_id" ref="hr.view_employee_form"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <div id="o_work_employee_container" position="before">-->
+<!--                <group>-->
+<!--                    <group string="General">-->
+<!--                        <field name="iqama_number"/>-->
+<!--                        <field name="iqama_expiry_date"/>-->
+<!--                        <field name="iqama_expiry_date_hijri"/>-->
+<!--                    </group>-->
+<!--                    <group string="Sponsorship">-->
+<!--                        <field name="sponsor_id"/>-->
+<!--                    </group>-->
+<!--                </group>-->
+<!--            </div>-->
+<!--            <div id="o_work_employee_container" position="after">-->
+<!--                <group>-->
+<!--                    <group string="GOSI">-->
+<!--                        <field name="gosi_number"/>-->
+<!--                    </group>-->
+<!--                    <group>-->
+
+<!--                    </group>-->
+<!--                </group>-->
+<!--            </div>-->
+<!--            <field name="mobile_phone" position="before">-->
+<!--                <field name="name_ar" placeholder="Eg. عبدالرحمن"/>-->
+<!--                <field name="employee_no"/>-->
+<!--            </field>-->
+
+<!--            <field name="visa_no" position="attributes">-->
+<!--                <attribute name="string">Iqama Number</attribute>-->
+<!--            </field>-->
+<!--            <field name="visa_expire" position="attributes">-->
+<!--                <attribute name="string">Iqama Expiry Date</attribute>-->
+<!--            </field>-->
+<!--            <field name="user_id" position="after">-->
+<!--                <field name="hr_responsible_id"/>-->
+<!--            </field>-->
+<!--            <field name="work_location" position="after">-->
+<!--                <field name="analytic_account_id"/>-->
+<!--            </field>-->
+<!--        </field>-->
+<!--    </record>-->
+
+</odoo>
