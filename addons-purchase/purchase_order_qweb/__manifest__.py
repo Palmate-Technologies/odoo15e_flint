@@ -7,7 +7,7 @@
 """,
 
     'description': """
-        Purchase order qweb reports.
+        Purchase order qweb report.
     """,
 
     'author': "Palmate",
