@@ -27,8 +27,8 @@ class HrEmployee(models.Model):
                                                     tracking=True)
 
     # employee_no = fields.Char(string="Employee ID")
-    # name = fields.Char(translate=True)
-    name = fields.Char(string="Employee Name", tracking=True,translate=True)
+    # name = fields.Char(string="Employee Name", tracking=True,translate=True)
+    name = fields.Char(string="Employee Name", related='resource_id.name', store=True, readonly=False, tracking=True)
     blood_group = fields.Char('Blood Group')
     iqama_occupation = fields.Char('Iqama Occupation')
     actual_work_trade = fields.Char('Actual Work Trade')
