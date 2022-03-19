@@ -34,6 +34,11 @@ class HrEmployee(models.Model):
     actual_work_trade_arabic = fields.Char('Actual Work Trade Arabic')
     personal_email = fields.Char('Personal Email')
 
+    date_of_entry = fields.Char('Date of Entry', groups="hr.group_hr_user",tracking=True, help='Date of entry in kingdom.')
+    passport_expiry_date = fields.Date('Passport Expiry Date', groups="hr.group_hr_user", tracking=True)
+    work_permit_issue_date = fields.Date('Work Permit IssueDate', groups="hr.group_hr_user", tracking=True)
+    is_outside_kingdom = fields.Boolean('Outside Kingdom',groups="hr.group_hr_user")
+
     # name_ar = fields.Char(string="Name in Arabic")
     # hr_responsible_id = fields.Many2one('res.users', "HR Responsible", tracking=True)
     # analytic_account_id = fields.Many2one('account.analytic.account', string='Analytic Account')

@@ -20,6 +20,16 @@
             <xpath expr="//field[@name='work_permit_expiration_date']" position="after">
                 <field name="work_permit_expiration_date_hijri"/>
             </xpath>
+            <xpath expr="//field[@name='passport_id']" position="after">
+                <field name="passport_expiry_date"/>
+            </xpath>
+            <xpath expr="//field[@name='permit_no']" position="after">
+                <field name="work_permit_issue_date"/>
+            </xpath>
+            <xpath expr="//field[@name='country_of_birth']" position="after">
+                <field name="date_of_entry"/>
+                <field name="is_outside_kingdom"/>
+            </xpath>
         </field>
     </record>
 

@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <field name="hr_responsible_id" position="after">
                 <field name="gosi_number"/>
+                <field name="gosi_registration_date"/>
                 <field name="sponsor_id"/>
             </field>
         </field>
