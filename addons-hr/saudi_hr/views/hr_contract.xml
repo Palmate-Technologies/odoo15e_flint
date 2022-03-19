@@ -11,6 +11,27 @@
                 <field name="gosi_registration_date"/>
                 <field name="sponsor_id"/>
             </field>
+
+            <group name="salary" position="inside">
+                <label for="phone_allowance" string="Phone Allowance"/>
+                <div class="o_row" name="phone_allowance">
+                    <field name="phone_allowance" nolabel="1"/>
+                    <span>/ month</span>
+                </div>
+
+                <label for="tools_allowance" string="Tools Allowance"/>
+                <div class="o_row" name="tools_allowance">
+                    <field name="tools_allowance" nolabel="1"/>
+                    <span>/ month</span>
+                </div>
+                <label for="tickets_allowance" string="Tickets Allowance"/>
+                <div class="o_row" name="tickets_allowance">
+                    <field name="tickets_allowance" nolabel="1"/>
+                    <span>/ month</span>
+                </div>
+
+            </group>
+
         </field>
     </record>
 

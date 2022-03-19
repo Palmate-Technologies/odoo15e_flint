@@ -24,3 +24,6 @@ class HrContract(models.Model):
     gosi_number = fields.Char(string="GOSI Number")
     sponsor_id = fields.Many2one('hr.sponsor', string="Sponsor")
     gosi_registration_date = fields.Date('GOSI Registration Date', groups="hr.group_hr_user", tracking=True)
+    phone_allowance = fields.Monetary(string='Phone Allowance')
+    tools_allowance = fields.Monetary(string='Tools Allowance')
+    tickets_allowance = fields.Monetary(string='Tickets Allowance')
