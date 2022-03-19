@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="base_partner_translatable.list">
+      <field name="name">base_partner_translatable list</field>
+      <field name="model">base_partner_translatable.base_partner_translatable</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="base_partner_translatable.action_window">
+      <field name="name">base_partner_translatable window</field>
+      <field name="res_model">base_partner_translatable.base_partner_translatable</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="base_partner_translatable.action_server">
+      <field name="name">base_partner_translatable server</field>
+      <field name="model_id" ref="model_base_partner_translatable_base_partner_translatable"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="base_partner_translatable" id="base_partner_translatable.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="base_partner_translatable.menu_1" parent="base_partner_translatable.menu_root"/>
+    <menuitem name="Menu 2" id="base_partner_translatable.menu_2" parent="base_partner_translatable.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="base_partner_translatable.menu_1_list" parent="base_partner_translatable.menu_1"
+              action="base_partner_translatable.action_window"/>
+    <menuitem name="Server to list" id="base_partner_translatable" parent="base_partner_translatable.menu_2"
+              action="base_partner_translatable.action_server"/>
+-->
+  </data>
+</odoo>
