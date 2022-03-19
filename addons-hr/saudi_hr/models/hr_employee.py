@@ -28,7 +28,7 @@ class HrEmployee(models.Model):
 
     # employee_no = fields.Char(string="Employee ID")
     # name = fields.Char(string="Employee Name", tracking=True,translate=True)
-    name = fields.Char(string="Employee Name", related='resource_id.name', store=True, readonly=False, tracking=True)
+    # name = fields.Char(string="Employee Name", related='resource_id.name', store=True, readonly=False, tracking=True)
     blood_group = fields.Char('Blood Group')
     iqama_occupation = fields.Char('Iqama Occupation')
     actual_work_trade = fields.Char('Actual Work Trade')
@@ -39,6 +39,7 @@ class HrEmployee(models.Model):
     passport_expiry_date = fields.Date('Passport Expiry Date', groups="hr.group_hr_user", tracking=True)
     work_permit_issue_date = fields.Date('Work Permit IssueDate', groups="hr.group_hr_user", tracking=True)
     is_outside_kingdom = fields.Boolean('Outside Kingdom',groups="hr.group_hr_user")
+    pf_no = fields.Char('PF No', groups="hr.group_hr_user", tracking=True)
 
     # name_ar = fields.Char(string="Name in Arabic")
     # hr_responsible_id = fields.Many2one('res.users', "HR Responsible", tracking=True)
