@@ -28,6 +28,7 @@ class HrEmployee(models.Model):
 
     # employee_no = fields.Char(string="Employee ID")
     # name = fields.Char(translate=True)
+    name = fields.Char(string="Employee Name", tracking=True,translate=True)
     blood_group = fields.Char('Blood Group')
     iqama_occupation = fields.Char('Iqama Occupation')
     actual_work_trade = fields.Char('Actual Work Trade')
