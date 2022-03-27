@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+       
+<!--    <record id="refresh_hr_payslip_form_view" model="ir.ui.view">-->
+<!--        <field name="name">Refresh Hr Payslip</field>-->
+<!--        <field name="model">refresh.hr.payslip</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Refresh Hr Payslip">-->
+<!--                <p>Click on refresh sheet...</p>-->
+<!--                <footer>-->
+<!--                    <button name="action_refresh_payslip" string="Refresh" type="object" class="oe_highlight"/> -->
+<!--                    <button special="cancel" string="Cancel" type="object" class="oe_link"/>-->
+<!--                </footer>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+    
+<!--    <act_window name="Refresh Payslip"-->
+<!--            res_model="refresh.hr.payslip"-->
+<!--            binding_model="hr.payslip"-->
+<!--            view_mode="form"-->
+<!--            target="new"-->
+<!--            id="action_refresh_hr_payslip" />-->
+        
+        
+</odoo>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+       
+    <record id="compute_sheet_multi_form_view" model="ir.ui.view">
+        <field name="name">Compute Sheet Multi</field>
+        <field name="model">compute.sheet.multi</field>
+        <field name="arch" type="xml">
+            <form string="Compute Sheet Multi">
+                <p>Click on compute sheet...</p>
+                <footer>
+                    <button name="action_compute_sheet_multi" string="Compute" type="object" class="oe_highlight"/> 
+                    <button special="cancel" string="Cancel" type="object" class="oe_link"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <act_window name="Compute Sheet"
+            res_model="compute.sheet.multi"
+            binding_model="hr.payslip"
+            view_mode="form"
+            target="new"
+
+            id="action_compute_sheet_multi" />
+
+</odoo>
+
+

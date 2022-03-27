@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="hr_attendance_summary_report_template_document">
+            <t t-set="doc" t-value="doc.with_context({'lang':doc.employee_id.address_home_id.lang})" />
+                <div class="page">
+                    <div class="row">
+                        <div class="text-center">
+                            <h2>
+                                <strong>Attendance Summary</strong>
+                            </h2>
+                            <h4>
+                                Employee Name: <span t-field="doc.employee_id.name"/>
+                            </h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <table class="table table-condensed table-bordered">
+                            <tr>
+                                <td>
+                                    <strong>Period</strong><br/>
+                                </td>
+                                <td>
+                                    <strong>Contract</strong><br/>
+                                </td>
+                                <td>
+                                    <strong>Mode</strong><br/>
+                                </td>
+                                <td>
+                                    <strong>Calc. Cycle</strong><br/>
+                                </td>
+                                <td>
+                                    <strong>Company</strong><br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span t-field="doc.date_from" t-field-options='{"widget": "date"}'/>
+                                </td>
+                                <td>
+                                    <span t-field="doc.contract_id"/>
+                                </td>
+                                <td>
+                                    <span t-field="doc.attendance_mode"/>
+                                </td>
+                                <td>
+                                    <span t-field="doc.ot_ded_calc_cycle"/>
+                                </td>
+                                <td>
+                                    <span t-field="doc.company_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Worked Days</strong><br/>
+                                </td>
+                                <td>
+                                    <strong>Absent Days</strong><br/>
+                                </td>
+                                <td>
+                                    <strong>Worked Hours</strong><br/>
+                                </td>
+                                <td>
+                                    <strong>Overtime Hours</strong><br/>
+                                </td>
+                                <td>
+                                    <strong>Deduction Hours</strong><br/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <span t-field="doc.worked_days"/>
+                                </td>
+                                <td>
+                                    <span t-field="doc.absent_days"/>
+                                </td>
+                                <td>
+                                    <span><t t-esc="'%02d:%02d' % (int(str(doc.worked_hours_total_compute).split('.')[0]), int(float(str('%.2f' % doc.worked_hours_total_compute).split('.')[1])/100*60))" /></span>
+                                </td>
+                                <td>
+                                    <span><t t-esc="'%02d:%02d' % (int(str(doc.overtime_hours_compute).split('.')[0]), int(float(str('%.2f' % doc.overtime_hours_compute).split('.')[1])/100*60))" /></span>
+                                </td>
+                                <td>
+                                    <span><t t-esc="'%02d:%02d' % (int(str(doc.deduction_hours_compute).split('.')[0]), int(float(str('%.2f' % doc.deduction_hours_compute).split('.')[1])/100*60))" /></span>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th style="width:10%;" >
+                                    <strong>Date</strong><br/>
+                                </th>
+                                <th style="width:10%;">
+                                    <strong>Days of Week</strong><br/>
+                                </th>
+                                <th style="width:10%;">
+                                    <strong>Working Hours</strong><br/>
+                                </th>
+                                <th style="width:10%;" >
+                                    <strong >Worked Hours</strong><br/>
+                                </th>
+                                <th style="width:10%;">
+                                    <strong>OT Hours</strong><br/>
+                                </th>
+                                <th style="width:10%;">
+                                    <strong>DED Hours</strong><br/>
+                                </th>
+                                <th style="width:10%;">
+                                    <strong>ADJ Hours</strong><br/>
+                                </th>
+                                <th style="width:10%;">
+                                    <strong>First In</strong><br/>
+                                </th>
+                                <th style="width:10%;">
+                                    <strong>Last Out</strong><br/>
+                                </th>
+                                <th style="width:10%;">
+                                    <strong>Status</strong><br/>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody class="invoice_tbody">
+                            <tr t-foreach="doc.summary_lines" t-as="l">
+                                <t t-if="l.status == 'attendance'"><t t-set="style" t-value="'color: black'" /></t>
+                                <t t-if="l.status == 'weekend'"><t t-set="style" t-value="'font-weight: bold'" /></t>
+                                <t t-if="l.status in ('absent','unpaid')"><t t-set="style" t-value="'color:brown'" /></t>
+                                <t t-if="l.status == 'leave'"><t t-set="style" t-value="'color:blue'" /></t>
+                                <t t-if="l.status == 'holiday'"><t t-set="style" t-value="'color:grey'" /></t>
+                                <td class="text-left">
+                                    <span t-att-style="style" t-field="l.attendance_date"/>
+                                </td>
+                                <td class="text-left">
+                                    <span t-att-style="style" t-field="l.dayofweek"/>
+                                </td>
+                                <td class="text-left">
+                                    <span t-att-style="style"><t t-esc="'%02d:%02d' % (int(str(l.working_hours).split('.')[0]), int(float(str('%.2f' % l.working_hours).split('.')[1])/100*60))" /></span>
+                                </td>
+                                <td class="text-left">
+                                    <span t-att-style="style"><t t-esc="'%02d:%02d' % (int(str(l.worked_hours).split('.')[0]), int(float(str('%.2f' % l.worked_hours).split('.')[1])/100*60))" /></span>
+                                </td>
+                                <td class="text-left">
+                                    <span t-att-style="style"><t t-esc="'%02d:%02d' % (int(str(l.overtime_hours).split('.')[0]), int(float(str('%.2f' % l.overtime_hours).split('.')[1])/100*60))" /></span>
+                                </td>
+                                <td class="text-left">
+                                    <span t-att-style="style"><t t-esc="'%02d:%02d' % (int(str(l.deduction_hours).split('.')[0]), int(float(str('%.2f' % l.deduction_hours).split('.')[1])/100*60))" /></span>
+                                </td>
+                                <td class="text-left">
+                                    <span t-att-style="style"><t t-esc="'%02d:%02d' % (int(str(l.adjustment_hours).split('.')[0]), int(float(str('%.2f' % l.adjustment_hours).split('.')[1])/100*60))" /></span>
+                                </td>
+                                <td class="text-left">
+                                    <t t-if="l.attendance_ids"><span t-att-style="style" t-esc="l.get_convert_utc_date_to_current_attendance_ids_check_in()"/></t>
+                                </td>
+                                <td class="text-left">
+                                    <t t-if="l.attendance_ids"><span t-att-style="style" t-esc="l.get_convert_utc_date_to_current_attendance_ids_check_out()"/></t>
+                                </td>
+                                <td class="text-left">
+                                    <span t-att-style="style" t-field="l.status"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="footer">
+                    <div class="row">
+                        <div class="col-xs-2 pull-right">
+                            <small>
+                                <span>Page</span>
+                                <span class="page" />
+                                of
+                                <span class="topage" />
+                            </small>
+                        </div>
+                    </div>
+                </div>
+        </template>
+
+        <template id="hr_attendance_summary_report_template">
+            <t t-call="report.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="hr_payroll_attendance.hr_attendance_summary_report_template_document" t-lang="doc.employee_id.address_home_id.lang"/>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

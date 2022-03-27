@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="hr_employee_view_search" model="ir.ui.view">
+        <field name="name">hr.employee.search.view.employee.code</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="registration_number" string="Code" filter_domain="[('registration_number', 'ilike', self)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_employee_form" model="ir.ui.view">
+        <field name="name">hr.employee.form.inherit.hr.employee.code</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='registration_number']" position="replace"/>
+            <xpath expr="//field[@name='mobile_phone']" position="before">
+                <field name="registration_number"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="hr_kanban_view_employees_work_location" model="ir.ui.view">
+        <field name="name">hr.kanban.view.employees.work.location</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.hr_kanban_view_employees" />
+        <field name="arch" type="xml">
+                <xpath expr="//strong[hasclass('o_kanban_record_title')]" position="after">
+                    <span t-if="record.registration_number.raw_value" class="o_kanban_record_subtitle"><field name="registration_number"/></span>
+                </xpath>
+
+                <xpath expr="//div[hasclass('o_kanban_record_top')]" position="after">
+                    <span t-if="record.mobile_phone.raw_value" class="o_kanban_record_subtitle"><field name="mobile_phone"/></span>
+                    <span t-if="record.profession_id.raw_value" class="o_kanban_record_subtitle"><field name="profession_id"/></span>
+<!--                    <span t-if="record.work_location.raw_value" class="o_kanban_record_subtitle"><field name="work_location"/></span>-->
+                    <span t-if="record.country_id.raw_value" class="o_kanban_record_subtitle"><field name="country_id"/></span>
+                </xpath>
+            <xpath expr="//ul" position="replace"/>
+
+        </field>
+    </record>
+
+</odoo>

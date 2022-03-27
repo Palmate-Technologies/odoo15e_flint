@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_payslip_form_hr_pa_inherit1" model="ir.ui.view">
+        <field name="name">hr.payslip.form.pa.inherit1</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form" />
+        <field name="arch" type="xml">
+<!--            <xpath expr="//div[@name='button_box']" position="inside">-->
+<!--                <button name="refresh_payslip"-->
+<!--                    class="oe_stat_button"-->
+<!--                    icon="fa-refresh"-->
+<!--                    string="Refresh"-->
+<!--                    type="object">-->
+<!--                </button>-->
+<!--            </xpath>-->
+<!--            <field name="worked_days_line_ids" position="after">-->
+<!--                <separator string="Attendance"/>-->
+<!--                <field name="attendance_line_ids">-->
+<!--                    <tree string="Attendance" editable="bottom">-->
+<!--                        <field name="name"/>-->
+<!--                        <field name="code"/>-->
+<!--                        <field name="number_of_days" sum="Total Days Worked"/>-->
+<!--                        <field name="number_of_hours"/>-->
+<!--                        <field name="number_of_ot_hours"/>-->
+<!--                        <field name="number_of_ded_hours"/>-->
+<!--                        <field name="contract_id"/>-->
+<!--                        <field name="sequence" invisible="True"/>-->
+<!--                    </tree>-->
+<!--                    <form string="Attendance">-->
+<!--                        <group col="4">-->
+<!--                            <field name="name"/>-->
+<!--                            <field name="code"/>-->
+<!--                            <field name="sequence"/>-->
+<!--                            <field name="number_of_days"/>-->
+<!--                            <field name="number_of_hours"/>-->
+<!--                            <field name="number_of_ot_hours"/>-->
+<!--                            <field name="number_of_ded_hours"/>-->
+<!--                            <field name="contract_id"/>-->
+<!--                        </group>-->
+<!--                    </form>-->
+<!--                </field>-->
+<!--            </field>-->
+            <group name="accounting" position="after">
+                <group name="attendance_summary" string="Attendance Summary">
+                    <field name="attendance_summary_ids" nolabel="1" colspan="2"
+                           attrs="{'readonly': [('attendance_summary_ids','!=',False)]}" />
+<!--                           attrs="{'invisible': [('attendance_summary_ids','=',False)], 'readonly': [('attendance_summary_ids','!=',False)]}" />-->
+                </group>
+            </group>
+
+            <xpath expr="//field[@name='worked_days_line_ids']/tree/field[@name='amount']" position="attributes">
+               <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='worked_days_line_ids']/form//field[@name='amount']" position="attributes">
+               <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//field[@name='worked_days_line_ids']/form//field[@name='amount']" position="after">
+               <field name="calc_rate"/>
+            </xpath>
+        </field>
+    </record>
+    
+<!--    <record id="view_hr_payslip_input_filter" model="ir.ui.view">-->
+<!--        <field name="name">hr.payslip.input.select</field>-->
+<!--        <field name="model">hr.payslip.input</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <search string="Payslip Input">-->
+<!--                <field name="name"/>-->
+<!--                <field name="code"/>-->
+<!--            </search>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    -->
+<!--    <record id="view_hr_payslip_input_tree" model="ir.ui.view">-->
+<!--        <field name="name">hr.payslip.input.tree</field>-->
+<!--        <field name="model">hr.payslip.input</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree string="Payslip Input" editable="bottom">-->
+<!--                <field name="payslip_id" />-->
+<!--                <field name="sequence" />-->
+<!--                <field name="name" />-->
+<!--                <field name="code" />-->
+<!--                <field name="amount" />-->
+<!--                <field name="contract_id" />-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    -->
+<!--    <record id="view_hr_payslip_input_form" model="ir.ui.view">-->
+<!--        <field name="name">hr.payslip.input.form</field>-->
+<!--        <field name="model">hr.payslip.input</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form string="Payslip Input">-->
+<!--                <group>-->
+<!--                    <group>-->
+<!--                         <field name="payslip_id" />-->
+<!--                         <field name="name" />-->
+<!--                         <field name="code" />-->
+<!--                    </group>-->
+<!--                    <group>-->
+<!--                         <field name="sequence" />-->
+<!--                         <field name="amount" />-->
+<!--                         <field name="contract_id" />-->
+<!--                    </group>-->
+<!--                </group>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+<!--    -->
+<!--    <record id="action_view_hr_payslip_input_tree" model="ir.actions.act_window">-->
+<!--        <field name="name">Payslip Input</field>-->
+<!--        <field name="res_model">hr.payslip.input</field>-->
+<!--&lt;!&ndash;        <field name="view_type">form</field>&ndash;&gt;-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="view_id" ref="view_hr_payslip_input_tree"/>-->
+<!--    </record>-->
+    
+<!--    <menuitem action="action_view_hr_payslip_input_tree" id="menu_hr_payslip_input_tree" parent="hr_work_entry_contract.menu_hr_payroll_root" groups="hr_payroll.group_hr_payroll_user"/>-->
+</odoo>

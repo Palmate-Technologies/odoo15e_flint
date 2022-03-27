@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="hr_attendance_summary_import_form" model="ir.ui.view">
+        <field name="name">hr.attendance.summary.import.form</field>
+        <field name="model">hr.attendance.summary.import</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="date_from" required="1"/>
+                        <field name="date_to" required="1"/>
+                    </group>
+                    <group>
+                        <field name="excel_file" required="1"/>
+                    </group>
+                </group>
+                 <div class="text-muted">
+                    Format:<br/>
+                    Column 1 :- Employee Code<br/>
+                    Column 2 onwards work entry type code
+                </div>
+                <footer>
+                    <button string="Import" name="action_import" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_hr_attendance_summary_import" model="ir.actions.act_window">
+        <field name="name">Import Attendance Summary</field>
+        <field name="res_model">hr.attendance.summary.import</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem id="menu_action_hr_attendance_summary_import" parent="hr_payroll_attendance.menu_hr_attendance_process_attendances" action="action_hr_attendance_summary_import" sequence="100"/>
+
+</odoo>

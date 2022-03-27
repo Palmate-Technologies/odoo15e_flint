@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_attendance_tree_hr_pa_inherit1" model="ir.ui.view">
+        <field name="name">hr.attendance.tree.pa.inherit1</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.view_attendance_tree" />
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position="attributes">
+                <attribute name="default_order">check_in</attribute>
+            </xpath>
+            <field name="check_out" position="after">
+                <field name="worked_hours" sum="Total Worked Hours" widget="float_time" />
+                <!--<field name="worked_hours_payslip" sum="Total Payslip Hours"/>-->
+            </field>
+        </field>
+    </record>
+    
+    <record id="hr_attendance_view_form_hr_pa_inherit1" model="ir.ui.view">
+        <field name="name">hr.attendance.form.pa.inherit1</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_form" />
+        <field name="arch" type="xml">
+            <field name="check_out" position="after">
+                <field name="worked_hours" widget="float_time"/>
+                <!--<field name="worked_hours_payslip"/>-->
+            </field>
+        </field>
+    </record>
+    
+<!--    <record id="hr_attendance_view_pivot_pa_inherit1" model="ir.ui.view">
+        <field name="name">hr.attendance.pivot.pa.inherit1</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_pivot" />
+        <field name="arch" type="xml">
+            <field name="worked_hours" position="after">
+                <field name="worked_hours_payslip" type="measure"/>
+            </field>
+        </field>
+    </record>
+    
+    <record id="hr_attendance_view_graph_pa_inherit1" model="ir.ui.view">
+        <field name="name">hr.attendance.graph.pa.inherit1</field>
+        <field name="model">hr.attendance</field>
+        <field name="inherit_id" ref="hr_attendance.hr_attendance_view_graph" />
+        <field name="arch" type="xml">
+            <field name="worked_hours" position="after">
+                <field name="worked_hours_payslip" type="measure"/>
+            </field>
+        </field>
+    </record>-->
+
+
+    <menuitem id="menu_hr_attendance_process_attendances" name="Process Attendances"
+              parent="hr_attendance.menu_hr_attendance_root" sequence="30"
+              groups="hr_attendance.group_hr_attendance_manager"/>
+
+<!--    <menuitem id="menu_hr_attendance_import" name="Import Attendance"-->
+<!--              parent="hr_payroll_attendance.menu_hr_attendance_process_attendances" sequence="1"-->
+<!--              action="hr_attendance_siafa.action_hr_attendance_import" groups="hr_attendance.group_hr_attendance_manager" />-->
+
+<!--    <menuitem id="export_conflict_report_menu_id" name="Export Attendance"-->
+<!--              parent="hr_payroll_attendance.menu_hr_attendance_process_attendances"-->
+<!--              sequence="2" groups="hr_attendance.group_hr_attendance_user"-->
+<!--              action="hr_attendance_siafa.action_export_conflict_report"/>-->
+
+<!--    <menuitem id="import_conflict_attendance_menu_id" name="Import Conflicts"-->
+<!--              parent="hr_payroll_attendance.menu_hr_attendance_process_attendances"-->
+<!--              sequence="3" groups="hr_attendance.group_hr_attendance_user"-->
+<!--              action="hr_attendance_siafa.action_import_conflict_attendance"/>-->
+
+    <menuitem id="menu_hr_attendance_summary_update" name="Generate Attendance Summary"
+              parent="hr_payroll_attendance.menu_hr_attendance_process_attendances" sequence="4"
+              action="action_hr_attendance_update" groups="hr_attendance.group_hr_attendance_manager" />
+
+    <menuitem id="menu_hr_attendance_summary_view_attendances" name="Attendances Summary"
+              parent="hr_payroll_attendance.menu_hr_attendance_process_attendances"
+              sequence="5" groups="hr_attendance.group_hr_attendance_manager"
+              action="hr_attendance_summary_action"/>
+
+    <menuitem id="hr_attendance.menu_hr_attendance_report" name="Reports"
+              parent="hr_attendance.menu_hr_attendance_root"
+              sequence="99" groups="hr_attendance.group_hr_attendance_user" />
+    <!--<menuitem id="menu_hr_attendance_import" parent="hr_payroll_attendance.menu_hr_attendance_process_attendances" action="action_hr_attendance_import" groups="hr_attendance.group_hr_attendance_manager" sequence="5"/>-->
+
+</odoo>

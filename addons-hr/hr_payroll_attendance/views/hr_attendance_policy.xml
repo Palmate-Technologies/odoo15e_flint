@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+<!--    &lt;!&ndash;Search&ndash;&gt;-->
+<!--    <record id="view_search_hr_attendance_policy" model="ir.ui.view">-->
+<!--        <field name="name">hr.attendance.policy.search</field>-->
+<!--        <field name="model">hr.attendance.policy</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <search>-->
+<!--                <field name="name" string="Name" filter_domain="[('name', 'ilike', self)]"/>-->
+<!--            </search>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash;Tree&ndash;&gt;-->
+<!--    <record id="view_tree_hr_attendance_policy" model="ir.ui.view">-->
+<!--        <field name="name">hr.attendance.policy.view.tree</field>-->
+<!--        <field name="model">hr.attendance.policy</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <tree>-->
+<!--                <field name="name"/>-->
+<!--            </tree>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash;Form&ndash;&gt;-->
+<!--    <record id="view_form_hr_attendance_policy" model="ir.ui.view">-->
+<!--        <field name="name">hr.attendance.policy.view.form</field>-->
+<!--        <field name="model">hr.attendance.policy</field>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <form>-->
+<!--                <sheet>-->
+<!--                    <label class="oe_edit_only" for="name" string="Policy Name"/>-->
+<!--                    <h1><field name="name"/></h1>-->
+<!--&lt;!&ndash;                    <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <group>&ndash;&gt;-->
+<!--&lt;!&ndash;                            <field name="name"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </group>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <group/>&ndash;&gt;-->
+<!--&lt;!&ndash;                    </group>&ndash;&gt;-->
+
+<!--                    <group string="Overtime Rules">-->
+<!--                        <table>-->
+<!--                            <tr>-->
+<!--                                <td style="text-align:center">-->
+<!--                                    <label string="Name" for="weekdays_overtime_min_hour"/>-->
+<!--                                </td>-->
+<!--                                <td style="text-align:center">-->
+<!--                                    <label string="Apply After" for="weekend_overtime_min_hour"/>-->
+<!--                                </td>-->
+<!--                                <td style="text-align:center">-->
+<!--                                    <label string="Rate" for="public_holiday_overtime_min_hour"/>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td style="text-align:left; padding-left: 15px; padding-right: 15px;">Working Days-->
+<!--                                    Overtime-->
+<!--                                </td>-->
+<!--                                <td style="text-align:center; padding-left: 15px; padding-right: 15px;">-->
+<!--                                    <field name="weekdays_overtime_min_hour" widget="float_time"/>-->
+<!--                                </td>-->
+<!--                                <td style="text-align:center; padding-left: 15px; padding-right: 15px;">-->
+<!--                                    <field name="weekdays_overtime_min_rate"/>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td style="text-align:left; padding-left: 15px; padding-right: 15px;">Weekend Overtime-->
+<!--                                </td>-->
+<!--                                <td style="text-align:center; padding-left: 15px; padding-right: 15px;">-->
+<!--                                    <field name="weekend_overtime_min_hour" widget="float_time"/>-->
+<!--                                </td>-->
+<!--                                <td style="text-align:center; padding-left: 15px; padding-right: 15px;">-->
+<!--                                    <field name="weekend_overtime_min_rate"/>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                            <tr>-->
+<!--                                <td style="text-align:left; padding-left: 15px; padding-right: 15px;">Public Holiday-->
+<!--                                    Overtime-->
+<!--                                </td>-->
+<!--                                <td style="text-align:center; padding-left: 15px; padding-right: 15px;">-->
+<!--                                    <field name="public_holiday_overtime_min_hour" widget="float_time"/>-->
+<!--                                </td>-->
+<!--                                <td style="text-align:center; padding-left: 15px; padding-right: 15px;">-->
+<!--                                    <field name="public_holiday_overtime_min_rate"/>-->
+<!--                                </td>-->
+<!--                            </tr>-->
+<!--                        </table>-->
+<!--                    </group>-->
+<!--                </sheet>-->
+<!--            </form>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash;Action&ndash;&gt;-->
+<!--    <record id="action_view_hr_attendance_policy" model="ir.actions.act_window">-->
+<!--        <field name="name">Attendance Policies</field>-->
+<!--        <field name="res_model">hr.attendance.policy</field>-->
+<!--        <field name="view_mode">tree,form</field>-->
+<!--        <field name="context">{}</field>-->
+<!--        <field name="domain">[]</field>-->
+<!--        <field name="help" type="html">-->
+<!--            <p class="oe_view_nocontent_create">-->
+<!--                Click here to create a record.-->
+<!--            </p>-->
+<!--        </field>-->
+<!--    </record>-->
+
+<!--    &lt;!&ndash;Menu&ndash;&gt;-->
+<!--    <menuitem id="menu_view_hr_attendance_policy" parent="hr_attendance.menu_hr_attendance_manage_attendances" action="action_view_hr_attendance_policy" sequence="100"/>-->
+
+</odoo>

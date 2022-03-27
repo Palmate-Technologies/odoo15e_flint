@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_contract_view_form_hr_pa_inherit1" model="ir.ui.view">
+        <field name="name">hr.contract.form.pa.inherit1</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <!--            <xpath expr="//header" position="inside">
+                            <button name="%(action_hr_attendance_update)d" string="Update Attendance" type="action" />
+                        </xpath>-->
+<!--            <field name="wage" position="after">-->
+<!--                <field name="wage_gross"/>-->
+<!--            </field>-->
+<!--            <xpath expr="//group[@name='duration_group']" position="inside">-->
+<!--                <field name="calc_days"/>-->
+<!--            </xpath>-->
+<!--            <xpath expr="//notebook" position="inside">-->
+<!--                <page string="Attendance" name="attendance">-->
+<!--                    <group>-->
+<!--                        <group colspan="4" col="4">-->
+<!--                            <field name="attendance_mode"/>-->
+<!--                            <field name="ot_ded_calc_cycle" attrs="{'invisible': [('attendance_mode','=','na')]}"/>-->
+<!--                        </group>-->
+
+<!--                        <group name="overtime" string="Overtime" attrs="{'invisible': [('attendance_mode','=','na')]}">-->
+<!--                            <field name="overtime_calc" string="Calculate"/>-->
+<!--                            <label for="overtime_lag" string="Free overtime work" attrs="{'invisible': [('overtime_calc','=',False)]}" />-->
+<!--                            <div class="o_row" attrs="{'invisible': [('overtime_calc','=',False)]}">-->
+<!--                                <field name="overtime_lag" attrs="{'required': [('overtime_calc','=',True)]}"/>-->
+<!--                                <span>minutes</span>-->
+<!--                            </div>-->
+<!--                        </group>-->
+
+<!--                        <group name="deduction" string="Deduction"-->
+<!--                               attrs="{'invisible': [('attendance_mode','=','na')]}">-->
+<!--                            <field name="deduction_calc" string="Calculate"/>-->
+<!--                            <label for="deduction_lag" string="Free less work" attrs="{'invisible': [('deduction_calc','=',False)]}" />-->
+<!--                            <div class="o_row" attrs="{'invisible': [('deduction_calc','=',False)]}">-->
+<!--                                <field name="deduction_lag" attrs="{'required': [('deduction_calc','=',True)]}"/>-->
+<!--                                <span>minutes</span>-->
+<!--                            </div>-->
+<!--                        </group>-->
+<!--                    </group>-->
+<!--                </page>-->
+<!--            </xpath>-->
+        </field>
+    </record>
+
+</odoo>

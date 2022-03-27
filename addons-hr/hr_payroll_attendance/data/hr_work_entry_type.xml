@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <data noupdate="1">
+
+        <record id="hr_work_entry_type_weekdays_overtime" model="hr.work.entry.type">
+            <field name="name">Weekdays Overtime</field>
+            <field name="color">0</field>
+            <field name="code">WEEKDAYOT</field>
+            <field name="sequence">100</field>
+            <field name="is_calculation" eval="True"/>
+            <field name="calc_rate">1.5</field>
+        </record>
+
+        <record id="hr_work_entry_type_weekend_overtime" model="hr.work.entry.type">
+            <field name="name">Weekend Overtime</field>
+            <field name="color">0</field>
+            <field name="code">WEEKENDOT</field>
+            <field name="sequence">101</field>
+            <field name="is_calculation" eval="True"/>
+            <field name="calc_rate">2</field>
+        </record>
+
+        <record id="hr_work_entry_type_public_holiday_overtime" model="hr.work.entry.type">
+            <field name="name">Public Holiday Overtime</field>
+            <field name="color">0</field>
+            <field name="code">PUBLICHOLIDAYOT</field>
+            <field name="sequence">102</field>
+            <field name="is_calculation" eval="True"/>
+            <field name="calc_rate">2</field>
+        </record>
+
+    </data>
+
+</odoo>

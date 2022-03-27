@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+<!--    <record id="view_hr_payroll_configuration_hr_payroll_attendance_inherit" model="ir.ui.view">-->
+<!--        <field name="name">Configure Payroll Attendance Inherit</field>-->
+<!--        <field name="model">res.config.settings</field>-->
+<!--        <field name="inherit_id" ref="hr_attendance.res_config_settings_view_form" />-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//div[@name='pincode_setting_container']" position="after">-->
+
+<!--                <div class="row mt16 o_settings_container" name="pincode_setting_container">-->
+<!--                    <div class="col-12 col-lg-6 o_setting_box">-->
+<!--                        <div class="o_setting_left_pane"> </div>-->
+<!--                        <div class="o_setting_right_pane">-->
+<!--                            <label for="payslip_day_from_setting"/>-->
+<!--                            <field name="payslip_day_from_setting" class="oe_inline" readonly="0"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="col-12 col-lg-6 o_setting_box">-->
+<!--                        <div class="o_setting_left_pane"> </div>-->
+<!--                        <div class="o_setting_right_pane">-->
+<!--                            <label for="payslip_day_to_setting"/>-->
+<!--                            <field name="payslip_day_to_setting" class="oe_inline"  readonly="0"/>-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                </div>-->
+
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+
+
+</odoo>
