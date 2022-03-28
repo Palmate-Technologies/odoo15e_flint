@@ -1,6 +1,7 @@
 from odoo import api, fields, models, _
 from datetime import datetime, timedelta
 from itertools import compress
+import calendar
 
 # import pandas as pd
 
@@ -24,6 +25,22 @@ class Contract(models.Model):
     deduction_lag = fields.Float(string='Ded Lag (minutes)')
     # calc_days = fields.Integer(string='Calculation Days')
     # attendance_policy_id = fields.Many2one("hr.attendance.policy")
+    total_hours = fields.Float(string='Total Hours', compute='_compute_total_hours',
+                               help='Total hours based on Salary structure type for the employee.')
+
+    def _compute_total_hours(self):
+        for contract in self:
+            if contract.resource_calendar_id and contract.resource_calendar_id.no_of_days_in_month:
+                days = contract.resource_calendar_id.no_of_days_in_month
+                if days == 'standard_30':
+                    days = 30
+                elif days == 'calendar_30':
+                    today = fields.Date.today()
+                    days = calendar.monthrange(today.year, today.month)
+                    days = days[1]
+                else:   # TODO: need to get working days here
+                    days = 30
+                contract.total_hours = days * 8
 
     def _calculate_ot_ded_hours(self, worked_hours, working_hours):
         overtime_hours = deduction_hours = 0.0

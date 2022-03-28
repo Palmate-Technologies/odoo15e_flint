@@ -39,7 +39,7 @@
         'views/views.xml',
         'views/hr_payroll_views.xml',
         'views/res_config_view.xml',
-        # 'views/hr_contract_views.xml',
+        'views/hr_contract_views.xml',
         'views/hr_attendance_summary_view.xml',
         'views/hr_attendance_view.xml',
         'views/hr_attendance_adjustment_view.xml',
@@ -51,5 +51,6 @@
         'views/hr_work_entry_type.xml',
     ],
     # only loaded in demonstration mode
+    'license':'LGPL-3'
 
 }

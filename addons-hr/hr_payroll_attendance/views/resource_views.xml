@@ -7,6 +7,7 @@
         <field name="inherit_id" ref="resource.resource_calendar_form" />
         <field name="arch" type="xml">
             <field name="company_id" position="after">
+                <field name="no_of_days_in_month"/>
                 <label for="flexible_daily_break" string="Break" />
                 <div class="o_row">
                     <field name="flexible_daily_break" />

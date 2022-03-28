@@ -11,6 +11,11 @@ class ResourceCalendar(models.Model):
 
     flexible_daily_break = fields.Float(string='Break', help='This break will be counted only when the attendance mode is flexible and cycle is daily.')
     # no_of_days_in_month = fields.Float(string="No of days in Month", default=30)
+    no_of_days_in_month = fields.Selection([
+        ('standard_30', 'Standard 30'),
+        ('calendar_30', 'Calendar 30'),
+        ('no_of_working_days', 'No of Working Days'),
+        ], string='No of Days in Month', default='standard_30')
 
     def _get_weekmask(self):
         weekmask_dict = {'0': False, '1': False, '2':False, '3':False, '4':False, '5':False, '6':False}
