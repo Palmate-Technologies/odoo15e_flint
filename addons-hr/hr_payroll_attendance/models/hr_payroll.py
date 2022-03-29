@@ -59,8 +59,7 @@ class HrPayslip(models.Model):
 
     @api.onchange('employee_id', 'struct_id', 'contract_id', 'date_from', 'date_to')
     def _onchange_employee(self):
-        res = super(HrPayslip, self)._onchange_employee()
-
+        # res = super(HrPayslip, self)._onchange_employee()
         for payslip in self:
             attendance_summaries = self.env['hr.attendance.summary'].search([
                 ('employee_id', '=', payslip.employee_id.id),
@@ -70,7 +69,8 @@ class HrPayslip(models.Model):
             ])
             payslip.attendance_summary_ids = [(6, 0, attendance_summaries.ids)]
             payslip.update_worked_days_lines()
-        return res
+
+        return {}
 
     def update_worked_days_lines(self):
         self.ensure_one()
