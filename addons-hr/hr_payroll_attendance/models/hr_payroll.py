@@ -4,6 +4,7 @@ from dateutil import relativedelta
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT, DEFAULT_SERVER_DATE_FORMAT
 from odoo.exceptions import ValidationError
 import babel
+from odoo.tools import float_round, date_utils, convert_file, html2plaintext
 
 from odoo import api, fields, models, tools, _
 
@@ -57,20 +58,50 @@ class HrPayslip(models.Model):
     #     res = super(HrPayslip, self).compute_sheet()
     #     return res
 
-    @api.onchange('employee_id', 'struct_id', 'contract_id', 'date_from', 'date_to')
-    def _onchange_employee(self):
-        # res = super(HrPayslip, self)._onchange_employee()
-        for payslip in self:
-            attendance_summaries = self.env['hr.attendance.summary'].search([
-                ('employee_id', '=', payslip.employee_id.id),
-                ('date_from', '>=', payslip.date_from),
-                ('check_date', '<=', payslip.date_to),
-                ('state', '=', 'draft')
-            ])
-            payslip.attendance_summary_ids = [(6, 0, attendance_summaries.ids)]
-            payslip.update_worked_days_lines()
+    # @api.depends('employee_id', 'contract_id', 'struct_id', 'date_from', 'date_to')
+    # def _compute_worked_days_line_ids(self):
+    #     if self.env.context.get('salary_simulation'):
+    #         return
+    #     valid_slips = self.filtered(lambda p: p.employee_id and p.date_from and p.date_to and p.contract_id and p.struct_id)
+    #     # Make sure to reset invalid payslip's worked days line
+    #     invalid_slips = self - valid_slips
+    #     invalid_slips.worked_days_line_ids = [(5, False, False)]
+    #     # Ensure work entries are generated for all contracts
+    #     generate_from = min(p.date_from for p in self)
+    #     current_month_end = date_utils.end_of(fields.Date.today(), 'month')
+    #     generate_to = max(min(fields.Date.to_date(p.date_to), current_month_end) for p in self)
+    #     self.mapped('contract_id')._generate_work_entries(generate_from, generate_to)
+    #
+    #     for slip in valid_slips:
+    #         t = {'sequence': 25, 'work_entry_type_id': 1, 'number_of_days': 23.0, 'number_of_hours': 184.0}
+    #         lines = slip._get_new_worked_days_lines()
+    #         lines += t
+    #         print("lines: ",lines)
+    #
+    #         slip.write({'worked_days_line_ids': lines})
 
-        return {}
+    # @api.depends('employee_id', 'contract_id', 'struct_id', 'date_from', 'date_to')
+    # def _compute_worked_days_line_ids(self):
+    #     res = super(HrPayslip, self)._compute_worked_days_line_ids()
+    #     print("ressss: ",res)
+    #     print("self.worked_days_line_ids: ",self.worked_days_line_ids)
+    #     return res
+
+    # onchagne commented in 15
+    # @api.onchange('employee_id', 'struct_id', 'contract_id', 'date_from', 'date_to')
+    # def _onchange_employee(self):
+    #     # res = super(HrPayslip, self)._onchange_employee()
+    #     for payslip in self:
+    #         attendance_summaries = self.env['hr.attendance.summary'].search([
+    #             ('employee_id', '=', payslip.employee_id.id),
+    #             ('date_from', '>=', payslip.date_from),
+    #             ('check_date', '<=', payslip.date_to),
+    #             ('state', '=', 'draft')
+    #         ])
+    #         payslip.attendance_summary_ids = [(6, 0, attendance_summaries.ids)]
+    #         payslip.update_worked_days_lines()
+    #
+    #     return {}
 
     def update_worked_days_lines(self):
         self.ensure_one()
@@ -166,18 +197,62 @@ class HrPayslip(models.Model):
         states={'draft': [('readonly', False)]})
     journal_id = fields.Many2one('account.journal', 'Salary Journal', readonly=True, required=True,
         states={'draft': [('readonly', False)]}, default=lambda self: self.env['account.journal'].search([('name', 'ilike', 'salary')], limit=1))
-    # attendance_summary_id = fields.Many2one('hr.attendance.summary', string='Attendance Summary')
     attendance_summary_ids = fields.One2many('hr.attendance.summary', 'payslip_id', string='Attendance Summary', copy=False)
 
-    # def _get_worked_day_lines(self, domain=None, check_out_of_contract=True):
-    #     res = super(HrPayslip, self)._get_worked_day_lines(domain=domain, check_out_of_contract=check_out_of_contract)
-    #
-    #
-    #
-    #
-    #     # block
-    #
-    #     return res
+    def _get_worked_day_lines(self, domain=None, check_out_of_contract=True):
+        res = super(HrPayslip, self)._get_worked_day_lines(domain=None, check_out_of_contract=True)
+        if self.contract_id:
+            attendance_summaries = self.attendance_summary_ids
+            if not attendance_summaries:
+                attendance_summaries = self.env['hr.attendance.summary'].search([
+                    ('employee_id', '=', self.contract_id.employee_id.id),
+                    ('date_from', '>=', self.date_from),
+                    ('check_date', '<=', self.date_to),
+                    ('state', '=', 'draft')
+                ])
+            if attendance_summaries:
+                worked_days = sum(attendance_summaries.mapped('worked_days'))
+                worked_hours_total_compute = sum(attendance_summaries.mapped('worked_hours_total_compute'))
+                absent_days = sum(attendance_summaries.mapped('absent_days'))
+                # overtime_hours_compute = sum(attendance_summaries.mapped('overtime_hours_compute'))
+                # deduction_hours_compute = sum(attendance_summaries.mapped('deduction_hours_compute'))
+
+                overtime_hours_compute = deduction_hours_compute = 0
+                for sl in attendance_summaries:
+                    overtime_hours_compute += sum(sl.manual_line_ids.filtered(lambda l:l.work_entry_type_id.code=='OT').mapped('no_of_hours'))
+                    deduction_hours_compute += sum(sl.manual_line_ids.filtered(lambda l:l.work_entry_type_id.code=='ABSDED').mapped('no_of_hours'))
+
+                if overtime_hours_compute:
+                    wo_type_id = False
+                    ot_type_ids = sl.manual_line_ids.filtered(lambda l: l.work_entry_type_id.code == 'OT').mapped('work_entry_type_id')
+                    if ot_type_ids:
+                        wo_type_id = ot_type_ids[0].id
+                    attendances = {
+                        'name': _("Overtime Hours"),
+                        'sequence': 10,
+                        'code': 'OT',
+                        'number_of_days': 0.0,
+                        'number_of_hours':overtime_hours_compute,
+                        'work_entry_type_id': wo_type_id,
+                    }
+                    res.append(attendances)
+
+                if deduction_hours_compute:
+                    wo_type_id = False
+                    ot_type_ids = sl.manual_line_ids.filtered(lambda l: l.work_entry_type_id.code == 'ABSDED').mapped('work_entry_type_id')
+                    if ot_type_ids:
+                        wo_type_id = ot_type_ids[0].id
+                    attendances = {
+                        'name': _("Absent/Deduction Hours"),
+                        'sequence': 15,
+                        'code': 'ABSDED',
+                        'number_of_days': 0.0,
+                        'number_of_hours': deduction_hours_compute,
+                        'work_entry_type_id': wo_type_id,
+                    }
+                    res.append(attendances)
+        return res
+
 
     # @api.model
     # def get_worked_day_lines(self, contract_ids, date_from, date_to):
