@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_salary_rule_form_parameter" model="ir.ui.view">
+        <field name="name">hr.salary.rule.form.parameter</field>
+        <field name="model">hr.salary.rule</field>
+        <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form" />
+        <field name="arch" type="xml">
+            <field name="amount_select" position="after">
+                <field name="parameter_id" attrs="{'invisible':[('amount_select','!=','parameter')],
+                'required':[('amount_select','=','parameter')]}"/>
+            </field>
+            <field name="quantity" position="attributes">
+                <attribute name="attrs">{'invisible':[('amount_select','in',('code','parameter'))], 'required':[('amount_select','!=','code')]}</attribute>
+            </field>
+        </field>
+    </record>
+
+</odoo>

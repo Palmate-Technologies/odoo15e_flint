@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="hr_salary_rule_form_global" model="ir.ui.view">
+        <field name="name">hr.salary.rule.global.form</field>
+        <field name="model">hr.salary.rule</field>
+        <field name="inherit_id" ref="hr_payroll.hr_salary_rule_form" />
+        <field name="arch" type="xml">
+            <field name="struct_id" position="replace">
+                <field name="is_global" invisible="1"/>
+                <field name="struct_id" attrs="{'required': [('is_global', '=', False)], 'invisible': [('is_global', '=', True)]}"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="hr_payroll.action_salary_rule_form" model="ir.actions.act_window">
+        <field name="name">Salary Rules</field>
+        <field name="res_model">hr.salary.rule</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('is_global','=',False)]</field>
+        <field name="context">{'search_default_group_by_struct_id': 1}</field>
+        <field name="search_view_id" ref="hr_payroll.view_hr_rule_filter"/>
+    </record>
+
+    <!-- Global Rules -->
+
+    <record id="hr_global_rule_form" model="ir.ui.view">
+        <field name="name">hr.global.rule.form</field>
+        <field name="model">hr.salary.rule</field>
+        <field name="priority">32</field>
+        <field name="arch" type="xml">
+            <form string="Salary Rules">
+            <sheet>
+                <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                <label for="name" class="oe_edit_only"/>
+                <h1><field name="name"/></h1>
+                <label for="category_id" class="oe_edit_only"/>
+                <h2><field name="category_id"/></h2>
+
+                <group name="main_details" col="4">
+                   <field name="code"/>
+                   <field name="sequence"/>
+                   <field name="active" widget="boolean_toggle"/>
+                   <field name="appears_on_payslip"/>
+                </group>
+                <notebook colspan="6">
+                    <page name="general" string="General">
+                        <group name="general_conditions">
+                            <group string="Computation">
+                                <field name="amount_select"/>
+                            </group>
+                            <group string="Company Contribution">
+                                <field name="partner_id"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page name="description" string="Description">
+                        <field name="note"/>
+                    </page>
+                    <page string="Accounting" name="accounting">
+                        <group colspan="4">
+                            <field name="account_debit" />
+                            <field name="account_credit"/>
+                            <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
+                            <field name="not_computed_in_net"/>
+                        </group>
+                    </page>
+                </notebook>
+            </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_hr_global_rule_filter" model="ir.ui.view">
+        <field name="name">hr.global.rule.select</field>
+        <field name="model">hr.salary.rule</field>
+        <field name="arch" type="xml">
+            <search string="Search Global Rule">
+                <field name="name" string="Salary Rules" filter_domain="['|', ('name', 'ilike', self), ('code', 'ilike', self)]"/>
+                <field name="category_id"/>
+                <field name="condition_range_min"/>
+                <separator/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+                <group col="8" colspan="4" expand="0" string="Group By">
+                    <filter string="Category" name="head" context="{'group_by': 'category_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_salary_rule_form_global" model="ir.actions.act_window">
+        <field name="name">Global Rules</field>
+        <field name="res_model">hr.salary.rule</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('is_global','=',True)]</field>
+        <field name="search_view_id" ref="view_hr_global_rule_filter"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_salary_rule_tree_global_form_view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="hr_payroll.hr_salary_rule_list"/>
+        <field name="act_window_id" ref="action_salary_rule_form_global"/>
+    </record>
+
+    <record model="ir.actions.act_window.view" id="action_salary_rule_form_global_form_view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="hr_global_rule_form"/>
+        <field name="act_window_id" ref="action_salary_rule_form_global"/>
+    </record>
+
+<!--    <record model="ir.actions.act_window.view" id="action_salary_rule_tree_form_view">-->
+<!--        <field name="sequence" eval="1"/>-->
+<!--        <field name="view_mode">tree</field>-->
+<!--        <field name="view_id" ref="hr_payroll.hr_salary_rule_list"/>-->
+<!--        <field name="act_window_id" ref="hr_payroll.action_salary_rule_form"/>-->
+<!--    </record>-->
+
+<!--    <record model="ir.actions.act_window.view" id="action_salary_rule_form_form_view">-->
+<!--        <field name="sequence" eval="2"/>-->
+<!--        <field name="view_mode">form</field>-->
+<!--        <field name="view_id" ref="hr_payroll.hr_salary_rule_form"/>-->
+<!--        <field name="act_window_id" ref="hr_payroll.action_salary_rule_form"/>-->
+<!--    </record>-->
+
+    <menuitem
+        id="menu_action_hr_salary_rule_form_global"
+        action="action_salary_rule_form_global"
+        name="Global Rules"
+        parent="hr_payroll.menu_hr_salary_configuration"
+        sequence="30"
+    />
+
+
+</odoo>

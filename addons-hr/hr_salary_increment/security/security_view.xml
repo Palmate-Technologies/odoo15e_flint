@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="group_submit_salary_increment" model="res.groups">
+        <field name="name">Salary Increment Submit</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+    <record id="group_approve_salary_increment" model="res.groups">
+        <field name="name">Salary Increment Approve</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+    </record>
+
+</odoo>
