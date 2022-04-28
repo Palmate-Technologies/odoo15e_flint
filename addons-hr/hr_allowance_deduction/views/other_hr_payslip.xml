@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="other_hr_payslip_form1" model="ir.ui.view">
+        <field name="name">Other HR Payslip</field>
+        <field name="model">other.hr.payslip</field>
+        <field name="arch" type="xml">
+            <form string="Other HR Payslip">
+                <header>
+                    <button name="other_hr_payslip_done" string="Done" states="draft" type="object" class="oe_highlight"
+                            groups="hr_payroll.group_hr_payroll_user"/>
+                    <button name="set_draft" string="Set as Draft" states="done" type="object"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                </header>
+                <sheet>
+                    <separator string="Employee Information"/>
+                    <group>
+                        <group>
+                            <field name="name" attrs="{'readonly':[('state','!=', 'draft')]}" />
+                            <field name="employee_id" attrs="{'readonly':[('state','!=', 'draft')]}"
+                                   placeholder="Select Employee"/>
+                            <field name="analytic_account_id" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                            <field name="department_id" force_save="1"/>
+                            <field name="struct_id" force_save="1"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"
+                                   attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="date" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+                            <field name="adjustment_type_id" attrs="{'readonly':[('state','!=', 'draft')]}" domain="['|',('struct_ids','=',False),('struct_ids','=',struct_id)]"/>
+                            <field name="operation_type" readonly="1" force_save="1"/>
+                            <field name="calc_type" attrs="{'readonly':[('state','!=', 'draft')]}"/>
+
+                            <field name="no_of_days"
+                                   attrs="{'readonly':[('state','!=', 'draft')], 'invisible': [('calc_type','!=','days')], 'required': [('calc_type', '=', 'days')]}"/>
+                            <field name="daily_wage" attrs="{'invisible':[('calc_type','!=', 'days')]}"/>
+                            <field name='no_of_hours'
+                                   attrs="{'readonly':[('state','!=', 'draft')], 'invisible': [('calc_type', '!=', 'hours')], 'required':[('calc_type', '=', 'hours')]}"/>
+                            <field name="hourly_wage" attrs="{'invisible':[('calc_type','!=', 'hours')]}"/>
+                            <field name='percentage'
+                                   attrs="{'readonly':[('state','!=', 'draft')], 'invisible': [('calc_type', '!=', 'percentage')], 'required':[('calc_type', '=', 'percentage')]}"/>
+                            <field name="wage" attrs="{'invisible':[('calc_type','!=', 'percentage')]}"/>
+                            <field name="amount"
+                                   attrs="{'readonly':[('state','!=', 'draft')], 'required': [('calc_type', '=', 'amount')]}"/>
+                            <!--                            <field name="payslip_id" attrs="{'invisible': [('payslip_id','=', False)]}"/>-->
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Description">
+                            <group colspan="4">
+                                <field name="description" placeholdar="Request Description" nolabel="1"
+                                       attrs="{'readonly': [('state','!=','draft')]}"/>
+                            </group>
+                        </page>
+                        <page string="Extra Information" groups="base.group_no_one">
+                            <group name="extra_info" col="4">
+                                <field name="create_uid" readonly="1"/>
+                                <field name="create_date" readonly="1"/>
+                                <field name="write_uid" readonly="1"/>
+                                <field name="write_date" readonly="1"/>
+                                <field name="approved_date" readonly="1" attrs="{'invisible':[('state','!=', 'done')]}"/>
+                                <field name="approved_uid" readonly="1" attrs="{'invisible':[('state','!=', 'done')]}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <record id="other_hr_payslip_tree" model="ir.ui.view">
+        <field name="name">Other.deduction.tree</field>
+        <field name="model">other.hr.payslip</field>
+        <field name="arch" type="xml">
+            <tree string="Adjustments" decoration-info="state == 'draft'" decoration-muted="state == 'done'">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="operation_type"/>
+                <field name="amount"/>
+                <field name="date"/>
+                <!--                <field name="payslip_id"/>-->
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_other_hr_payslip_filter" model="ir.ui.view">
+        <field name="name">other.hr.payslip.filter</field>
+        <field name="model">other.hr.payslip</field>
+        <field name="arch" type="xml">
+            <search string="Search Other Allowances/Deduction">
+                <field name="employee_id"/>
+                <separator/>
+                <filter name="filter_approve" icon="terp-check" domain="[('state','=','draft')]" string="To Approve"/>
+                <filter name="filter_done" icon="terp-camera_test" domain="[('state','=','done')]" string="Done"/>
+                <separator/>
+                <group expand="0" string="Group By...">
+                    <filter name="group_name" string="Employee" context="{'group_by':'employee_id'}"/>
+                    <filter name="group_request" string="Type" icon="terp-personal"
+                            context="{'group_by':'operation_type'}"/>
+                    <filter name="group_department" string="Department" icon="terp-personal+"
+                            context="{'group_by':'department_id','set_visible':True}"/>
+                    <filter name="group_status" string="Status" icon="terp-stock_effects-object-colorize"
+                            context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_other_hr_payslip" model="ir.actions.act_window">
+        <field name="name">Adjustments</field>
+        <field name="res_model">other.hr.payslip</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{'search_default_group_name':1}</field>
+    </record>
+
+    <!--            parent="hr_work_entry_contract.menu_hr_payroll_root"-->
+    <menuitem
+            id="menu_hr_payroll"
+            name="Adjustments"
+            sequence="65"
+            parent="hr_work_entry_contract_enterprise.menu_hr_payroll_root"
+            action="action_other_hr_payslip"
+            groups="hr_payroll.group_hr_payroll_user"
+    />
+
+    <record id="form_other_hr_payslip_type" model="ir.ui.view">
+        <field name="name">other.hr.payslip.type.form</field>
+        <field name="model">other.hr.payslip.type</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name" class="oe_edit_only"/>
+                        <h1><field name="name"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="mode"/>
+                            <field name="rule_id"/>
+                        </group>
+                        <group>
+                            <field name="active"/>
+                        </group>
+                        <group>
+                            <field name="struct_ids" widget="many2many_tags" colspan="4"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_other_hr_payslip_type" model="ir.actions.act_window">
+        <field name="name">Adjustment Types</field>
+        <field name="res_model">other.hr.payslip.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+    </record>
+
+
+    <menuitem
+            id="menu_other_hr_payslip_type"
+            name="Adjustment Types"
+            sequence="200"
+            parent="hr_payroll.menu_hr_salary_configuration"
+            action="action_other_hr_payslip_type"
+            groups="hr_payroll.group_hr_payroll_user"
+    />
+
+
+
+</odoo>

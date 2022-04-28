@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+
+        <record id="hr_salary_rule_adjustment" model="hr.salary.rule">
+            <field name="amount_select">adjustment</field>
+            <field eval="0.0" name="amount_fix"/>
+            <field name="code">ADJ</field>
+            <field name="category_id" ref="hr_payroll.ALW"/>
+            <field name="name">Other Adjustment</field>
+            <field name="sequence" eval="99"/>
+            <field name="struct_id" ref="structure_worker_001"/>
+        </record>
+
+    </data>
+</odoo>
