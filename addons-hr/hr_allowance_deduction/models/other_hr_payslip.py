@@ -50,7 +50,7 @@ class OtherHrPayslip(models.Model):
                               ('done', 'Done')], string='State', default='draft', tracking=True)
     company_id = fields.Many2one('res.company', string="Company", required=True, default=lambda self: self.env.user.company_id)
     currency_id = fields.Many2one(string="Currency", related='company_id.currency_id', readonly=True)
-    analytic_account_id = fields.Many2one('account.analytic.account')
+    analytic_account_id = fields.Many2one('account.analytic.account', string='Project')
 
     # @api.multi
     def unlink(self):
