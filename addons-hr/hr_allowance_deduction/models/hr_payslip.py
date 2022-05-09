@@ -82,5 +82,5 @@ class HrPayrollStructure(models.Model):
 
         for adjustment_line in adjustment_lines:
             all_rules |= adjustment_line.adjustment_type_id.rule_id
-        localdict.update(adjustments=adjustment_line)
+            localdict.update(adjustments=adjustment_line)
         return all_rules, localdict
