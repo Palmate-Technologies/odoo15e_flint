@@ -76,6 +76,21 @@ class HrSalaryIncrement(models.Model):
 
         return True
 
+    def update_increment_in_contract_cron_past(self):
+        increments = self.search([
+                ('salary_structure_updated','!=',True),
+                ('state','=','approved'),
+            ])
+        print("increments: ",increments)
+        for increment in increments:
+            contract = increment.contract_id
+            for line in increment.increment_lines:
+                setattr(contract, line.increment_field_id.field_id.name, line.new_value)
+                print("updated")
+            increment.salary_structure_updated = True
+
+        return True
+
     def action_submit(self):
         for increment in self:
             if increment.increment_lines.filtered(lambda l: l.is_changed):
