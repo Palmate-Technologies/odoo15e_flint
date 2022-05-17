@@ -3,3 +3,7 @@ access_hr_salary_increment,access_hr_salary_increment,model_hr_salary_increment,
 access_hr_salary_increment_line,access_hr_salary_increment_line,model_hr_salary_increment_line,hr.group_hr_user,1,1,1,0
 access_hr_salary_increment_line,access_hr_salary_increment_line,model_hr_salary_increment_line,base.group_system,1,1,1,1
 access_hr_salary_parameter,access_hr_salary_parameter,model_hr_salary_parameter,hr.group_hr_user,1,1,1,1
+access_ir_model_fields,access_ir_model_fields,base.model_ir_model_fields,hr.group_hr_user,1,1,1,1
+access_ir_model_fields_manager,access_ir_model_fields,base.model_ir_model_fields,hr.group_hr_manager,1,1,1,0
+access_ir_model,access_ir_model,base.model_ir_model,hr.group_hr_user,1,1,1,0
+access_ir_model_manager,access_ir_model,base.model_ir_model_fields,hr.group_hr_manager,1,1,1,0
