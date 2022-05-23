@@ -71,7 +71,7 @@
                                 mode="tree,from"
                                 attrs="{'readonly': [('state', 'in', ('to_approve','approved'))]}"
                             >
-                            <tree string="Increment Lines" editable="bottom">
+                            <tree string="Increment Lines" editable="bottom" create="0">
                                 <field name="increment_field_id" optional="show"/>
                                 <field name="old_value" optional="show"/>
                                 <field name="new_value" optional="show"/>

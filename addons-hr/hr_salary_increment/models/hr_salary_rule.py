@@ -10,6 +10,7 @@ class HrSalaryRule(models.Model):
     parameter_id = fields.Many2one('hr.salary.parameter', string='Salary Parameter', ondelete='restrict')
 
     def _compute_rule(self, localdict):
+        precision = self.env['decimal.precision'].precision_get('Payroll')
         self.ensure_one()
         res = super(HrSalaryRule, self)._compute_rule(localdict)
 
@@ -41,7 +42,7 @@ class HrSalaryRule(models.Model):
                 if days <= 30:
                     new_value = ((30 - days) * increment_lines[0].new_value) / 30
                     old_value = (days * increment_lines[0].old_value) / 30
-                    amount = float(round(old_value + new_value,2))
+                    amount = float(round(old_value + new_value, precision))
 
                     res = (amount, res[1], res[2])
         return res
