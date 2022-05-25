@@ -104,6 +104,7 @@ class HrPayslip(models.Model):
     #     return {}
 
     def update_worked_days_lines(self):
+        precision = self.env['decimal.precision'].precision_get('Payroll')
         self.ensure_one()
 
         if not self.contract_id:
@@ -133,7 +134,7 @@ class HrPayslip(models.Model):
                     'work_entry_type_id': line.work_entry_type_id.id,
                     'number_of_days': 0,
                     'number_of_hours': line.no_of_hours,
-                    'calc_rate': line.work_entry_type_id.is_calculation and line.work_entry_type_id.calc_rate or 0,
+                    'calc_rate': float(round((line.work_entry_type_id.is_calculation and line.work_entry_type_id.calc_rate or 0), precision)),
                 })
 
         self.write({'worked_days_line_ids': [(0, 0, x) for x in lines]})

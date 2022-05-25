@@ -22,27 +22,44 @@ class HrSalaryRule(models.Model):
             amount = getattr(contract, parameter.field_id.name)
             res = (amount, res[1], res[2])
 
-            ### Check if increment line exist
+            # if payroll running for past month, and increment is happened for next months
+            # take old values from increment lines
             increment_lines = self.env['hr.salary.increment.line'].search([
-                ('increment_field_id','=',parameter.id),
-                ('is_changed','=',True),
-                ('increment_id.state','=','approved'),
-                # ('increment_id.salary_structure_updated','=',True),
-                ('increment_id.contract_id','=',contract.id),
-                ('increment_id.effective_date','>=',payslip.date_from),
-                ('increment_id.effective_date','<=',payslip.date_to),
-            ])
+                ('increment_field_id', '=', parameter.id),
+                ('is_changed', '=', True),
+                ('increment_id.state', '=', 'approved'),
+                ('increment_id.contract_id', '=', contract.id),
+                ('increment_id.effective_date', '>=', payslip.date_to),
+            ], order='id desc')
 
             if increment_lines:
-                if not increment_lines[0].increment_id.salary_structure_updated:
-                    raise UserError(_('Please run Salary Increment cron first!'))
+                # amount = float(round(increment_lines[0].old_value, precision))
+                amount = increment_lines[0].old_value
+                res = (amount, res[1], res[2])
+            else:
+                ### Check if increment line exist
+                increment_lines = self.env['hr.salary.increment.line'].search([
+                    ('increment_field_id','=',parameter.id),
+                    ('is_changed','=',True),
+                    ('increment_id.state','=','approved'),
+                    # ('increment_id.salary_structure_updated','=',True),
+                    ('increment_id.contract_id','=',contract.id),
+                    ('increment_id.effective_date','>=',payslip.date_from),
+                    ('increment_id.effective_date','<=',payslip.date_to),
+                ])
 
-                effective_date = increment_lines[0].increment_id.effective_date
-                days = int(effective_date.strftime("%d")) - 1
-                if days <= 30:
-                    new_value = ((30 - days) * increment_lines[0].new_value) / 30
-                    old_value = (days * increment_lines[0].old_value) / 30
-                    amount = float(round(old_value + new_value, precision))
+                if increment_lines:
+                    if not increment_lines[0].increment_id.salary_structure_updated:
+                        raise UserError(_('Please run Salary Increment cron first!'))
 
-                    res = (amount, res[1], res[2])
+                    effective_date = increment_lines[0].increment_id.effective_date
+                    days = int(effective_date.strftime("%d")) - 1
+                    if days <= 30:
+                        new_value = ((30 - days) * increment_lines[0].new_value) / 30
+                        old_value = (days * increment_lines[0].old_value) / 30
+                        # amount = float(round(old_value + new_value, precision))
+                        amount = old_value + new_value
+                        res = (amount, res[1], res[2])
+
+        res = (round(res[0], precision), res[1], res[2])
         return res
