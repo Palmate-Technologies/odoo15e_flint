@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+
+    <record id="payroll_report2_view_pivot" model="ir.ui.view">
+        <field name="name">payroll.report2.pivot</field>
+        <field name="model">hr.payroll.report2</field>
+        <field name="arch" type="xml">
+            <pivot>
+
+                <field name="employee_id" type="row"/>
+<!--                <field name="employee_id2" type="measure"/>-->
+            </pivot>
+        </field>
+    </record>
+
+
+    <record id="payroll_report_action2" model="ir.actions.act_window">
+        <field name="name">Payroll (Detailed)</field>
+        <field name="res_model">hr.payroll.report2</field>
+        <field name="view_mode">pivot</field>
+        <field name="help">This report performs payroll reporting.</field>
+    </record>
+
+    <menuitem id="menu_report_payroll2"
+              name="Payroll (Detailed)"
+              action="payroll_report_action2"
+              sequence="15"
+              parent="hr_payroll.menu_hr_payroll_report"/>
+
+
+
+</odoo>
