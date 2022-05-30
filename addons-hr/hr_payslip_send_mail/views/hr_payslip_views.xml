@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="payslip_form_send_mail" model="ir.ui.view">
+            <field name="name">payslip.send.mail</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+                <header>
+                    <button name="action_send_payslip" type="object" string="Send By Email" class="oe_highlight"/>
+                </header>
+            </field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mail_template,access_mail_template,mail.model_mail_template,hr_payroll.group_hr_payroll_user,1,1,1,1
+access_mail_compose_message,access_mail_compose_message,mail.model_mail_compose_message,hr_payroll.group_hr_payroll_user,1,1,1,1
