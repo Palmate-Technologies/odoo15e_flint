@@ -16,9 +16,9 @@
 <!--                        </span>-->
 <!--                        <field name="department_id" nolabel="1"/>-->
 
-                        <separator string="Analytic Account" colspan="2"/>
+                        <separator string="Project (Analytic Account)" colspan="2"/>
                         <newline/>
-                        <span class="text-muted">Set a specific analytic account if you wish to select all the employees from
+                        <span class="text-muted">Set a specific project (analytic account) if you wish to select all the employees from
                             this analytic account (and its child) at once.
                         </span>
                         <field name="analytic_account_id" nolabel="1"/>
