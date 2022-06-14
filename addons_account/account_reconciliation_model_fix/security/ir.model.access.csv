@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_account_reconciliation_model_fix_account_reconciliation_model_fix,account_reconciliation_model_fix.account_reconciliation_model_fix,model_account_reconciliation_model_fix_account_reconciliation_model_fix,base.group_user,1,1,1,1
